@@ -1,0 +1,7 @@
+#name : guice provider
+# --
+private static class $1Provider implements Provider<$2> {
+  @Override public $2 get() {
+    $0
+  }
+}
