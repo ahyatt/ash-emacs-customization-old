@@ -108,6 +108,10 @@ styles that aren't already using two or four spaces."
 (defvar autosave-dir (concat "/tmp/emacs_autosaves/" (user-login-name) "/"))
 (make-directory autosave-dir t)
 
+;; Remove unnecessary stuff that takes up space
 (setq inhibit-startup-screen t)
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
+(menu-bar-mode -1)
 
 (provide 'ash-customizations)
