@@ -1,7 +1,7 @@
 ;; Term colors coordinated with the faces below.
 (setq
- term-default-bg-color "grey12"
- term-default-fg-color "green")
+ term-default-bg-color "black"
+ term-default-fg-color "white")
 
 (require 'color-theme)
 
