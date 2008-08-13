@@ -24,6 +24,7 @@
 (require 'ash-java)
 (require 'ash-erc)
 (require 'w3m-load)
+(require 'ash-faces)
 (require 'git)
 
 (server-start)
