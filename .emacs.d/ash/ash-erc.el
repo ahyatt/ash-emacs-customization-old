@@ -16,8 +16,6 @@
       erc-track-exclude-server-buffer t
       erc-track-showcount t
       erc-notify-signoff-hook '(erc-notify-signoff)
-      erc-notify-signon-hook '(erc-notify-signon)
-      
-
+      erc-notify-signon-hook '(erc-notify-signon))
 
 (provide 'ash-erc)
