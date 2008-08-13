@@ -108,4 +108,6 @@ styles that aren't already using two or four spaces."
 (defvar autosave-dir (concat "/tmp/emacs_autosaves/" (user-login-name) "/"))
 (make-directory autosave-dir t)
 
+(setq inhibit-startup-screen t)
+
 (provide 'ash-customizations)
