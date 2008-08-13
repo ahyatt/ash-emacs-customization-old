@@ -101,19 +101,6 @@ styles that aren't already using two or four spaces."
 
 (define-key global-map "\C-x\C-j" 'dired-jump)
 
-(defvar ash-face-customization-file "~/.emacs.d/ash/ash-faces.el"
-  "Fully specified pathname for face customization file")
-
-(defadvice custom-save-all (around ash-custom-save-faces-to-file activate)
-  "Save face customizations to `ash-face-customization-file'."
-  (let ((custom-file
-         (if (string-match "Face" (buffer-name (current-buffer)))
-             ash-face-customization-file custom-file)))
-        ad-do-it))
-
-;; On loading this file, let's load our face customizations
-(load ash-face-customization-file)
-
 ;; backup stuff from http://wiki.corp.google.com/twiki/bin/view/Main/GnuEmacsBackupFiles
 ;; Put autosave files (ie #foo#) in one place, *not* scattered all over the
 ;; file system! (The make-autosave-file-name function is invoked to determine
