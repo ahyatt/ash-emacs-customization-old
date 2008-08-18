@@ -1,9 +1,6 @@
 (require 'erc)
 (require 'erc-page-me)
 
-(setq ash-erc-mode-line-string '(" "))
-(add-to-list 'global-mode-string 'ash-erc-mode-line-string t)
-
 (setq erc-modules '(autoaway autojoin completion fill irccontrols log match menu move-to-prompt noncommands notify readonly ring scrolltobottom smiley stamp track)
       erc-hide-list (quote ("JOIN" "KICK" "NICK" "PART" "QUIT" "MODE"
                             "301" "305" "306" "317"
