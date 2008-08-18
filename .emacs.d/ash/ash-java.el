@@ -206,8 +206,9 @@ register 105 (i).  Use this in conjunction with
     (setq he-expand-list (cdr he-expand-list))
     t))
 
-(setq hippie-expand-try-functions-list
-      (append hippie-expand-try-functions-list '(try-expand-tag)))
+;; Not yet using this
+;; (setq hippie-expand-try-functions-list
+;;       (append hippie-expand-try-functions-list '(try-expand-tag)))
 
 (setq semanticdb-default-save-directory "~/tmp/semantic.cache")
 (require 'cedet)
