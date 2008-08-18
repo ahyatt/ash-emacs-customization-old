@@ -58,6 +58,7 @@ styles that aren't already using two or four spaces."
 	       ("dired" (mode . dired-mode))
 	       ("java" (mode . java-mode))
 	       ("shell" (mode . shell-mode))
+	       ("eshell" (mode . eshell-mode))
 	       ("lisp" (mode . emacs-lisp-mode))
 	       ("erc" (mode . erc-mode))
 	       ("org" (mode . org-mode))
