@@ -11,6 +11,11 @@
 (setq mm-text-html-renderer 'w3m-standalone)
 (setq gnus-message-archive-group "Sent")
 
+(setq gnus-agent-queue-mail nil)
+(setq gnus-keep-same-level 't)
+
+(setq gnus-group-use-permanent-levels 't)
+
 ;; '(bbdb-extract-address-component-ignore-regexp "\\(\\(undisclosed\\|unlisted\\)[^,]*recipients\\)\\|no To-header on input|buganizer")
 
 
