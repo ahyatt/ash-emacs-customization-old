@@ -24,6 +24,7 @@ Andrew Hyatt to add more customizations."
      (bold ((t (:bold t))))
      (bold-italic ((t (:italic t :bold t))))
      (erc-input ((t (:foreground "yellow"))))
+     (erc-input-face ((t (:foreground "yellow"))))
      (fringe ((t (:background "black"))))
      (font-lock-builtin-face ((t (:foreground "#aaccff"))))
      (font-lock-comment-face ((t (:italic t :foreground "#bb55ee"))))
