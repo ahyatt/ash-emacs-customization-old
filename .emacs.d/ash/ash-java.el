@@ -220,7 +220,8 @@ register 105 (i).  Use this in conjunction with
 (add-hook 'java-mode-hook 'senator-minor-mode t)
 (add-hook 'java-mode-hook 'semantic-decoration-mode t)
 (add-hook 'java-mode-hook 'semantic-stickyfunc-mode t)
-(add-hook 'java-mode-hook 'semantic-mru-bookmark-mode t)
+;; This seems to cause infinite reloading
+;(add-hook 'java-mode-hook 'semantic-mru-bookmark-mode t)
 
 (require 'doc-mode)
 (add-hook 'java-mode-hook 'doc-mode t)
