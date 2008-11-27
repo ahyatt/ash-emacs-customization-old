@@ -115,4 +115,12 @@ styles that aren't already using two or four spaces."
 (scroll-bar-mode -1)
 (menu-bar-mode -1)
 
+(ido-mode)
+
+(require 'key-chord)
+(key-chord-mode 1)
+(key-chord-define-global "jk" 'dabbrev-expand)
+
+
+
 (provide 'ash-customizations)
