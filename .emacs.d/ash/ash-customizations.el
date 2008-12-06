@@ -120,6 +120,12 @@ styles that aren't already using two or four spaces."
 (require 'key-chord)
 (key-chord-mode 1)
 (key-chord-define-global "jk" 'dabbrev-expand)
+(key-chord-define-global "l;" '(lambda () (interactive)
+                                 (magit-status default-directory)))
+(key-chord-define-global "aa" 'anything)
+(key-chord-define-global "s;" 'anything-select-action)
+(key-chord-define-global "j;" (lambda () (interactive) (switch-to-buffer "*-jabber-*")))
+
 
 
 
