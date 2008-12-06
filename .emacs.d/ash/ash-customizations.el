@@ -126,7 +126,4 @@ styles that aren't already using two or four spaces."
 (key-chord-define-global "s;" 'anything-select-action)
 (key-chord-define-global "j;" (lambda () (interactive) (switch-to-buffer "*-jabber-*")))
 
-
-
-
 (provide 'ash-customizations)
