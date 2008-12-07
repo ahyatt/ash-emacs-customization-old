@@ -25,6 +25,7 @@
 (require 'ash-erc)
 (require 'w3m-load)
 (require 'ash-faces)
-(require 'git)
+(require 'magit)
+(require 'anything)
 
 (server-start)
