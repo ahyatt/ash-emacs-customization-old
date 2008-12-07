@@ -124,6 +124,20 @@ styles that aren't already using two or four spaces."
                                  (magit-status default-directory)))
 (key-chord-define-global "aa" 'anything)
 (key-chord-define-global "s;" 'anything-select-action)
-(key-chord-define-global "j;" (lambda () (interactive) (switch-to-buffer "*-jabber-*")))
+
+(require 'anything)
+(require 'anything-config)
+(require 'bbdb)
+
+(setq anything-sources
+      (list anything-c-source-buffers
+            anything-c-source-buffer-not-found
+            anything-c-source-file-name-history
+            anything-c-source-info-pages
+            anything-c-source-man-pages
+            anything-c-source-locate
+            anything-c-source-emacs-commands
+            anything-c-source-bbdb
+            anything-c-source-google-suggest))
 
 (provide 'ash-customizations)
