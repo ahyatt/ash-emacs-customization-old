@@ -20,7 +20,7 @@
 (require 'ash-customizations)
 (require 'ash-refill-mode)
 (require 'ash-org)
-(require 'ash-term)
+(require 'ash-eshell)
 (require 'ash-java)
 (require 'ash-erc)
 (require 'w3m-load)
