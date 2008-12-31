@@ -85,19 +85,19 @@ styles that aren't already using two or four spaces."
 	  (lambda ()
 	    (ibuffer-switch-to-saved-filter-groups "default")))
 
-(require 'ffap)
-(ffap-bindings)
+;; ffap seems to disable ido for filenames, which has it's own ffap bindings
+;(require 'ffap)
+;(ffap-bindings)
 
 (setq recentf-max-saved-items 500)
 (setq recentf-max-menu-items 60)
-(global-set-key [(meta f12)] 'recentf-open-files)
 (global-set-key [(control f12)] 'ibuffer)
+(recentf-mode)
 
 (set-default 'indent-tabs-mode nil)
 
 (display-time-mode 't)
 
-(setq completion-auto-help nil)
 (partial-completion-mode)
 
 (define-key global-map "\C-x\C-j" 'dired-jump)
@@ -120,8 +120,7 @@ styles that aren't already using two or four spaces."
 (require 'key-chord)
 (key-chord-mode 1)
 (key-chord-define-global "jk" 'dabbrev-expand)
-(key-chord-define-global "l;" '(lambda () (interactive)
-                                 (magit-status default-directory)))
+(key-chord-define-global "l;" 'egg-status)
 (key-chord-define-global "aa" 'anything)
 (key-chord-define-global "s;" 'anything-select-action)
 
