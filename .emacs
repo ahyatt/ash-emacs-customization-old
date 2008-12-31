@@ -29,7 +29,8 @@
 (require 'git)
 (require 'ash-google)
 (require 'ash-cbg)
-(require 'magit)
+(require 'egg)
+(require 'jabber)
 
 (defun google3-build-mode-force-in-python ()
 "Many BUILD files in google3 use the -*- mode: python -*- comment.
