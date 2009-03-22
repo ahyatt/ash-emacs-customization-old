@@ -129,14 +129,18 @@ styles that aren't already using two or four spaces."
 (require 'bbdb)
 
 (setq anything-sources
-      (list anything-c-source-buffers
+      (list anything-c-source-bookmarks
+            anything-c-source-buffers
             anything-c-source-buffer-not-found
             anything-c-source-file-name-history
             anything-c-source-info-pages
             anything-c-source-man-pages
             anything-c-source-locate
+            anything-c-source-calculation-result
+            anything-c-source-evaluation-result
+            anything-c-source-complex-command-history
+            anything-c-source-google-suggest
             anything-c-source-emacs-commands
-            anything-c-source-bbdb
-            anything-c-source-google-suggest))
+            anything-c-source-bbdb))
 
 (provide 'ash-customizations)
