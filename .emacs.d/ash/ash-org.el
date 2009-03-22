@@ -1,5 +1,7 @@
 (require 'org)
 (require 'org-attach)
+(require 'org-exp-blocks)
+(require 'org-screen)
 
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
 (define-key global-map "\C-cl" 'org-store-link)
@@ -12,6 +14,8 @@
       '(("w" todo "WAITING" nil)
 	("b" tags-todo "+bg")))
 (setq org-agenda-include-diary t)
+(setq org-enforce-todo-dependencies t)
+(setq org-agenda-dim-blocked-tasks 'invisible)
 
 (defun ash-org-date-to-list (date)
   "Rewrite of date-to-time without the buggy
@@ -55,7 +59,7 @@ timezone-make-date-arpa-standard function"
 	      (format-time-string (car org-time-stamp-formats))))))))))
 
 (add-hook 'org-after-todo-state-change-hook 'ash-org-advance-next)
-      
+
 (define-key global-map [f9] 'org-clock-goto)
 
 (define-key global-map "\C-c\C-xC" 'ash-org-mark-done)
