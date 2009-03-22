@@ -15,29 +15,41 @@
 (setq gnus-keep-same-level 't)
 
 (setq gnus-group-use-permanent-levels 't)
+(setq gnus-summary-line-format "%-10&user-date;%U%R%z%I%(%[%-23,23f%]%) %s\n")
 
-;; '(bbdb-extract-address-component-ignore-regexp "\\(\\(undisclosed\\|unlisted\\)[^,]*recipients\\)\\|no To-header on input|buganizer")
+;; From http://emacs.wordpress.com/2008/04/21/two-gnus-tricks/
+(setq gnus-user-date-format-alist
+      '(((gnus-seconds-today) . "Today, %H:%M")
+        ((+ 86400 (gnus-seconds-today)) . "Yesterday, %H:%M")
+        (604800 . "%A %H:%M") ;;that's one week
+        ((gnus-seconds-month) . "%A %d")
+        ((gnus-seconds-year) . "%B %d")
+        (t . "%B %d '%y"))) ;;this one is used when no other does match
+
+;; From http://www.emacswiki.org/emacs/init-gnus.el
+
+(setq gnus-summary-line-format "%4P %U%R%z%O %{%5k%} %{%19&user-date;%}   %{%-20,20n%} %{%ua%} %B %(%I%-60,60s%)\n")
+(defun gnus-user-format-function-a (header) 
+  (let ((myself (concat "<" user-mail-address ">"))
+        (references (mail-header-references header))
+        (message-id (mail-header-id header)))
+    (if (or (and (stringp references)
+                 (string-match myself references))
+            (and (stringp message-id)
+                 (string-match myself message-id)))
+        "X" "│")))
+
+(setq gnus-summary-same-subject "")
+(setq gnus-sum-thread-tree-indent "    ")
+(setq gnus-sum-thread-tree-single-indent "◎ ")
+(setq gnus-sum-thread-tree-root "● ")
+(setq gnus-sum-thread-tree-false-root "☆")
+(setq gnus-sum-thread-tree-vertical "│")
+(setq gnus-sum-thread-tree-leaf-with-other "├─► ")
+(setq gnus-sum-thread-tree-single-leaf "╰─► ")
 
 
 (defvar ash-last-mail-check (current-time))
 (defvar ash-old-background-color nil)
-
-;; (defadvice gnus-group-get-new-news (before mail-freq-warning
-;; 					   first
-;; 					   (&optional arg)
-;; 					   activate) 
-;;   " A function to help me stop checking mail so often.  Based on
-;;  an Arthur Gleckler customization for his (different) mail
-;;  reader."
-
-;;   (when (< (time-to-seconds (time-since ash-last-mail-check)) (* 60 60))
-;;     (unless ash-old-background-color
-;;       (setq ash-old-background-color
-;; 	    (cdr (assoc 'background-color (frame-parameters)))))
-;;     (set-background-color "red")
-;;     (run-at-time "5 min" nil
-;; 		 (lambda ()
-;; 		   (set-background-color ash-old-background-color))))
-;;   (setq ash-last-mail-check (current-time)))
 
 (provide 'ash-gnus)

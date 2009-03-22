@@ -69,9 +69,13 @@ to change the mode inside the mode-hook, which is done by this function"
         ("." . browse-url-firefox)))
 
 (require 'midnight)
+(setq midnight-mode t)
 (jabber-autoaway-start)
 
+(setq-default show-trailing-whitespace t)
+
 (server-start)
+
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
@@ -99,6 +103,13 @@ to change the mode inside the mode-hook, which is done by this function"
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- '(default ((t (:stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 116 :width normal :foundry "unknown" :family "DejaVu Sans Mono")))))
+ '(anything-isearch-match ((t (:background "Yellow" :foreground "black"))))
+ '(extra-java-font-lock-link-face ((t (:foreground "green" :underline t :slant normal))))
+ '(font-lock-comment-face ((t (:foreground "#bb55ee" :slant italic))))
+ '(font-lock-doc-face ((t (:foreground "LightSalmon" :height 0.8 :family "Bitstream Vera Serif"))))
+ '(font-lock-function-name-face ((t (:foreground "#ffcc00" :weight bold))))
+ '(git-header-face ((((class color) (background dark)) (:foreground "light blue"))))
+ '(jabber-chat-prompt-local ((t (:foreground "light blue" :weight bold))))
+ '(jabber-roster-user-online ((t (:foreground "light blue" :slant normal :weight bold)))))
 
 (put 'narrow-to-region 'disabled nil)
