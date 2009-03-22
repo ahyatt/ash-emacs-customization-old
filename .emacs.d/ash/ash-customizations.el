@@ -2,6 +2,9 @@
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
 
+(add-to-list 'after-make-frame-functions
+             (lambda (frame) (select-frame frame) (set-terminal-coding-system 'utf-8)))
+
 (setenv "EDITOR" "emacsclient")
 
 (global-font-lock-mode t)
