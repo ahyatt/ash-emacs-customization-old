@@ -28,7 +28,6 @@
 (require 'ash-faces)
 (require 'git)
 (require 'anything)
-(require 'ash-cbg)
 (require 'egg)
 (require 'jabber)
 
