@@ -9,7 +9,7 @@
 ;; yas (dynamic templates)
 (require 'yasnippet)
 (yas/initialize)
-(yas/load-directory "~/src/ash-elisp/snippets")
+(yas/load-directory "~/.emacs.d/snippets")
 
 (add-hook 'yas/after-exit-snippet-hook
           '(lambda ()
