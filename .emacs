@@ -7,6 +7,8 @@
                           "~/.emacs.d/org-mode/contrib/lisp"
                           "~/.emacs.d/cedet/common"
                           "~/.emacs.d/cedet/semantic"
+                          "~/.emacs.d/egg"
+                          "~/.emacs.d/emacs-jabber"
                           "~/.emacs.d/w3m"
         		  "~/.emacs.d/icicles"
 			  "~/.emacs.d/git") load-path))

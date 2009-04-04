@@ -77,7 +77,8 @@ The functions should accept one argument, the connection object."
 	     jabber-muc-autojoin
 	     jabber-whitespace-ping-start
 	     jabber-keepalive-start
-	     jabber-vcard-avatars-find-current)
+	     jabber-vcard-avatars-find-current
+	     jabber-autoaway-start)
   :group 'jabber-core)
 
 (defcustom jabber-pre-disconnect-hook nil
@@ -110,7 +111,7 @@ indefinitely.  See `password-cache' and `password-cache-expiry'."
   :type 'integer
   :group 'jabber-core)
 
-(defcustom jabber-roster-buffer "*-jabber-*"
+(defcustom jabber-roster-buffer "*-jabber-roster-*"
   "The name of the roster buffer"
   :type 'string
   :group 'jabber-core)
@@ -132,6 +133,12 @@ problems."
   "Return non-nil if SASL functions are available."
   (featurep 'sasl))
 
+(defvar jabber-account-history ()
+  "Keeps track of previously used jabber accounts")
+
+(defvar jabber-connection-type-history ()
+  "Keeps track of previously used connection types")
+
 ;; jabber-connect and jabber-connect-all should load jabber.el, not
 ;; just jabber-core.el, when autoloaded.
 
@@ -139,14 +146,25 @@ problems."
 (defun jabber-connect-all (&optional arg)
   "Connect to all configured Jabber accounts.
 See `jabber-account-list'.
-If no accounts are configured (or ARG supplied), call `jabber-connect' interactively."
+If no accounts are configured (or with prefix argument), call `jabber-connect' interactively.
+With many prefix arguments, one less is passed to `jabber-connect'."
   (interactive "P")
   (let ((accounts
 	 (remove-if (lambda (account)
 		      (cdr (assq :disabled (cdr account))))
 		    jabber-account-list)))
     (if (or (null accounts) arg)
-	(progn (setq current-prefix-arg nil) (call-interactively 'jabber-connect))
+	(let ((current-prefix-arg
+	       (cond
+		;; A number of C-u's; remove one, so to speak.
+		((consp arg)
+		 (if (> (car arg) 4)
+		     (list (/ (car arg) 4))
+		   nil))
+		;; Otherwise, we just don't care.
+		(t
+		 arg))))
+	  (call-interactively 'jabber-connect))
       ;; Only connect those accounts that are not yet connected.
       (let ((already-connected (mapcar #'jabber-connection-bare-jid jabber-connections))
 	    (connected-one nil))
@@ -173,7 +191,7 @@ If no accounts are configured (or ARG supplied), call `jabber-connect' interacti
 With prefix argument, register a new account.
 With double prefix argument, specify more connection details."
   (interactive
-   (let* ((jid (completing-read "Enter your JID: " jabber-account-list))
+   (let* ((jid (completing-read "Enter your JID: " jabber-account-list nil nil nil 'jabber-account-history))
 	  (entry (assoc jid jabber-account-list))
 	  (alist (cdr entry))
 	  password network-server port connection-type registerp)
@@ -210,7 +228,7 @@ With double prefix argument, specify more connection details."
 		    (mapcar (lambda (type)
 			      (cons (symbol-name (car type)) nil))
 			    jabber-connect-methods)
-		    nil t nil nil default)))))
+		    nil t nil 'jabber-connection-type-history default)))))
 	 (setq registerp (yes-or-no-p "Register new account? ")))
        (when (equal current-prefix-arg '(4))
 	 (setq registerp t))
@@ -219,6 +237,9 @@ With double prefix argument, specify more connection details."
 	     (jabber-jid-server jid)
 	     (jabber-jid-resource jid)
 	     registerp password network-server port connection-type))))
+
+  (require 'jabber)
+
   (if (member (list username
 		    server)
 	      (mapcar

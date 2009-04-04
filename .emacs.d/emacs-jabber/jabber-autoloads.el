@@ -6,7 +6,7 @@
 ;;;### (autoloads (jabber-info jabber-customize jabber-debug-keep-process-buffers
 ;;;;;;  jabber-debug-log-xml jabber-default-priority jabber-default-status
 ;;;;;;  jabber-default-show jabber-account-list) "jabber" "jabber.el"
-;;;;;;  (18646 41083))
+;;;;;;  (18646 41179))
 ;;; Generated autoloads from jabber.el
 
 (defvar jabber-account-list nil "\
@@ -41,22 +41,22 @@ configure a Google Talk account like this:
   (:network-server . \"talk.google.com\")
   (:connection-type . ssl)))")
 
-(custom-autoload 'jabber-account-list "jabber" t)
+(custom-autoload (quote jabber-account-list) "jabber" t)
 
 (defvar jabber-default-show "" "\
 default show state")
 
-(custom-autoload 'jabber-default-show "jabber" t)
+(custom-autoload (quote jabber-default-show) "jabber" t)
 
 (defvar jabber-default-status "" "\
 default status string")
 
-(custom-autoload 'jabber-default-status "jabber" t)
+(custom-autoload (quote jabber-default-status) "jabber" t)
 
 (defvar jabber-default-priority 10 "\
 default priority")
 
-(custom-autoload 'jabber-default-priority "jabber" t)
+(custom-autoload (quote jabber-default-priority) "jabber" t)
 
 (defvar *jabber-current-status* nil "\
 the users current presence staus")
@@ -70,26 +70,26 @@ the user's current priority")
 (defvar jabber-debug-log-xml nil "\
 log all XML i/o in *-jabber-xml-log-JID-*")
 
-(custom-autoload 'jabber-debug-log-xml "jabber" t)
+(custom-autoload (quote jabber-debug-log-xml) "jabber" t)
 
 (defvar jabber-debug-keep-process-buffers nil "\
 If nil, kill process buffers when the process dies.
 Contents of process buffers might be useful for debugging.")
 
-(custom-autoload 'jabber-debug-keep-process-buffers "jabber" t)
+(custom-autoload (quote jabber-debug-keep-process-buffers) "jabber" t)
 
-(defconst jabber-presence-faces '(("" . jabber-roster-user-online) ("away" . jabber-roster-user-away) ("xa" . jabber-roster-user-xa) ("dnd" . jabber-roster-user-dnd) ("chat" . jabber-roster-user-chatty) ("error" . jabber-roster-user-error) (nil . jabber-roster-user-offline)) "\
+(defconst jabber-presence-faces (quote (("" . jabber-roster-user-online) ("away" . jabber-roster-user-away) ("xa" . jabber-roster-user-xa) ("dnd" . jabber-roster-user-dnd) ("chat" . jabber-roster-user-chatty) ("error" . jabber-roster-user-error) (nil . jabber-roster-user-offline))) "\
 Mapping from presence types to faces")
 
-(defconst jabber-presence-strings '(("" . "Online") ("away" . "Away") ("xa" . "Extended Away") ("dnd" . "Do not Disturb") ("chat" . "Chatty") ("error" . "Error") (nil . "Offline")) "\
+(defconst jabber-presence-strings (quote (("" . "Online") ("away" . "Away") ("xa" . "Extended Away") ("dnd" . "Do not Disturb") ("chat" . "Chatty") ("error" . "Error") (nil . "Offline"))) "\
 Mapping from presence types to readable strings")
 
-(autoload 'jabber-customize "jabber" "\
+(autoload (quote jabber-customize) "jabber" "\
 customize jabber options
 
 \(fn)" t nil)
 
-(autoload 'jabber-info "jabber" "\
+(autoload (quote jabber-info) "jabber" "\
 open jabber.el manual
 
 \(fn)" t nil)
@@ -97,7 +97,7 @@ open jabber.el manual
 ;;;***
 
 ;;;### (autoloads (jabber-activity-mode) "jabber-activity" "jabber-activity.el"
-;;;;;;  (18658 5188))
+;;;;;;  (18656 35878))
 ;;; Generated autoloads from jabber-activity.el
 
 (defvar jabber-activity-mode t "\
@@ -107,9 +107,9 @@ Setting this variable directly does not take effect;
 either customize it (see the info node `Easy Customization')
 or call the function `jabber-activity-mode'.")
 
-(custom-autoload 'jabber-activity-mode "jabber-activity" nil)
+(custom-autoload (quote jabber-activity-mode) "jabber-activity" nil)
 
-(autoload 'jabber-activity-mode "jabber-activity" "\
+(autoload (quote jabber-activity-mode) "jabber-activity" "\
 Toggle display of activity in hidden jabber buffers in the mode line.
 
 With a numeric arg, enable this display if arg is positive.
@@ -118,12 +118,25 @@ With a numeric arg, enable this display if arg is positive.
 
 ;;;***
 
+;;;### (autoloads (jabber-autoaway-start) "jabber-autoaway" "jabber-autoaway.el"
+;;;;;;  (18665 62242))
+;;; Generated autoloads from jabber-autoaway.el
+
+(autoload (quote jabber-autoaway-start) "jabber-autoaway" "\
+Start autoaway timer.
+The IGNORED argument is there so you can put this function in
+`jabber-post-connect-hooks'.
+
+\(fn &optional IGNORED)" t nil)
+
+;;;***
+
 ;;;### (autoloads (jabber-edit-bookmarks jabber-get-bookmarks-from-cache
 ;;;;;;  jabber-get-bookmarks jabber-parse-conference-bookmark jabber-get-conference-data)
-;;;;;;  "jabber-bookmarks" "jabber-bookmarks.el" (18517 8970))
+;;;;;;  "jabber-bookmarks" "jabber-bookmarks.el" (18519 53158))
 ;;; Generated autoloads from jabber-bookmarks.el
 
-(autoload 'jabber-get-conference-data "jabber-bookmarks" "\
+(autoload (quote jabber-get-conference-data) "jabber-bookmarks" "\
 Get bookmark data for CONFERENCE-JID.
 KEY may be nil or one of :name, :autojoin, :nick and :password.
 If KEY is nil, a plist containing the above keys is returned.
@@ -133,14 +146,14 @@ immediately, and return nil if it is not in the cache.
 
 \(fn JC CONFERENCE-JID CONT &optional KEY)" nil nil)
 
-(autoload 'jabber-parse-conference-bookmark "jabber-bookmarks" "\
+(autoload (quote jabber-parse-conference-bookmark) "jabber-bookmarks" "\
 Convert a <conference/> tag into a plist.
 The plist may contain the keys :jid, :name, :autojoin,
 :nick and :password.
 
 \(fn NODE)" nil nil)
 
-(autoload 'jabber-get-bookmarks "jabber-bookmarks" "\
+(autoload (quote jabber-get-bookmarks) "jabber-bookmarks" "\
 Retrieve bookmarks (if needed) and call CONT.
 Arguments to CONT are JC and the bookmark list.  CONT will be
 called as the result of a filter function or a timer.
@@ -148,14 +161,14 @@ If REFRESH is non-nil, always fetch bookmarks.
 
 \(fn JC CONT &optional REFRESH)" nil nil)
 
-(autoload 'jabber-get-bookmarks-from-cache "jabber-bookmarks" "\
+(autoload (quote jabber-get-bookmarks-from-cache) "jabber-bookmarks" "\
 Return cached bookmarks for JC.
 If bookmarks have not yet been fetched by `jabber-get-bookmarks',
 return nil.
 
 \(fn JC)" nil nil)
 
-(autoload 'jabber-edit-bookmarks "jabber-bookmarks" "\
+(autoload (quote jabber-edit-bookmarks) "jabber-bookmarks" "\
 Create a buffer for editing bookmarks interactively.
 
 \(fn JC)" t nil)
@@ -163,13 +176,13 @@ Create a buffer for editing bookmarks interactively.
 ;;;***
 
 ;;;### (autoloads (jabber-chat-get-buffer) "jabber-chat" "jabber-chat.el"
-;;;;;;  (18658 5189))
+;;;;;;  (18656 55680))
 ;;; Generated autoloads from jabber-chat.el
 
 (defvar jabber-chatting-with nil "\
 JID of the person you are chatting with")
 
-(autoload 'jabber-chat-get-buffer "jabber-chat" "\
+(autoload (quote jabber-chat-get-buffer) "jabber-chat" "\
 Return the chat buffer for chatting with CHAT-WITH (bare or full JID).
 Either a string or a buffer is returned, so use `get-buffer' or
 `get-buffer-create'.
@@ -179,28 +192,28 @@ Either a string or a buffer is returned, so use `get-buffer' or
 ;;;***
 
 ;;;### (autoloads nil "jabber-chatbuffer" "jabber-chatbuffer.el"
-;;;;;;  (18517 7586))
+;;;;;;  (18700 17499))
 ;;; Generated autoloads from jabber-chatbuffer.el
 
 (defvar jabber-buffer-connection nil "\
 The connection used by this buffer.")
 
-(make-variable-buffer-local 'jabber-buffer-connection)
+(make-variable-buffer-local (quote jabber-buffer-connection))
 
 ;;;***
 
 ;;;### (autoloads (jabber-compose) "jabber-compose" "jabber-compose.el"
-;;;;;;  (17958 41106))
+;;;;;;  (17958 41192))
 ;;; Generated autoloads from jabber-compose.el
 
-(autoload 'jabber-compose "jabber-compose" "\
+(autoload (quote jabber-compose) "jabber-compose" "\
 Create a buffer for composing a Jabber message.
 
 \(fn JC &optional RECIPIENT)" t nil)
 
 ;;;***
 
-;;;### (autoloads nil "jabber-core" "jabber-core.el" (18646 41260))
+;;;### (autoloads nil "jabber-core" "jabber-core.el" (18824 58598))
 ;;; Generated autoloads from jabber-core.el
  (autoload 'jabber-connect-all "jabber" "Connect to all configured Jabber accounts.\nSee `jabber-account-list'.\nIf no accounts are configured (or ARG supplied), call `jabber-connect' interactively." t)
  (autoload 'jabber-connect "jabber" "Connect to the Jabber server and start a Jabber XML stream.\nWith prefix argument, register a new account.\nWith double prefix argument, specify more connection details." t)
@@ -208,15 +221,15 @@ Create a buffer for composing a Jabber message.
 ;;;***
 
 ;;;### (autoloads (jabber-import-roster jabber-export-roster) "jabber-export"
-;;;;;;  "jabber-export.el" (18442 56829))
+;;;;;;  "jabber-export.el" (18442 57588))
 ;;; Generated autoloads from jabber-export.el
 
-(autoload 'jabber-export-roster "jabber-export" "\
+(autoload (quote jabber-export-roster) "jabber-export" "\
 Export roster for connection JC.
 
 \(fn JC)" t nil)
 
-(autoload 'jabber-import-roster "jabber-export" "\
+(autoload (quote jabber-import-roster) "jabber-export" "\
 Create buffer for roster import for connection JC from FILE.
 
 \(fn JC FILE)" t nil)
@@ -224,16 +237,16 @@ Create buffer for roster import for connection JC from FILE.
 ;;;***
 
 ;;;### (autoloads (jabber-gmail-query jabber-gmail-subscribe) "jabber-gmail"
-;;;;;;  "jabber-gmail.el" (18365 38156))
+;;;;;;  "jabber-gmail.el" (18365 38343))
 ;;; Generated autoloads from jabber-gmail.el
 
-(autoload 'jabber-gmail-subscribe "jabber-gmail" "\
+(autoload (quote jabber-gmail-subscribe) "jabber-gmail" "\
 Subscribe to gmail notifications.
 See http://code.google.com/apis/talk/jep_extensions/usersettings.html#4
 
 \(fn JC)" t nil)
 
-(autoload 'jabber-gmail-query "jabber-gmail" "\
+(autoload (quote jabber-gmail-query) "jabber-gmail" "\
 Request mail information from the Google Talk server (a.k.a. one shot query).
 See http://code.google.com/apis/talk/jep_extensions/gmail.html#requestmail
 
@@ -244,22 +257,22 @@ See http://code.google.com/apis/talk/jep_extensions/gmail.html#requestmail
 ;;;### (autoloads (jabber-whitespace-ping-start jabber-whitespace-ping-interval
 ;;;;;;  jabber-keepalive-start jabber-keepalive-timeout jabber-keepalive-interval
 ;;;;;;  jabber-keepalive) "jabber-keepalive" "jabber-keepalive.el"
-;;;;;;  (18646 39651))
+;;;;;;  (18646 41180))
 ;;; Generated autoloads from jabber-keepalive.el
 
-(let ((loads (get 'jabber-keepalive 'custom-loads))) (if (member '"jabber-keepalive" loads) nil (put 'jabber-keepalive 'custom-loads (cons '"jabber-keepalive" loads))))
+(let ((loads (get (quote jabber-keepalive) (quote custom-loads)))) (if (member (quote "jabber-keepalive") loads) nil (put (quote jabber-keepalive) (quote custom-loads) (cons (quote "jabber-keepalive") loads))))
 
 (defvar jabber-keepalive-interval 600 "\
 Interval in seconds between connection checks.")
 
-(custom-autoload 'jabber-keepalive-interval "jabber-keepalive" t)
+(custom-autoload (quote jabber-keepalive-interval) "jabber-keepalive" t)
 
 (defvar jabber-keepalive-timeout 20 "\
 Seconds to wait for response from server.")
 
-(custom-autoload 'jabber-keepalive-timeout "jabber-keepalive" t)
+(custom-autoload (quote jabber-keepalive-timeout) "jabber-keepalive" t)
 
-(autoload 'jabber-keepalive-start "jabber-keepalive" "\
+(autoload (quote jabber-keepalive-start) "jabber-keepalive" "\
 Activate keepalive.
 That is, regularly send a ping request to the server, and
 disconnect if it doesn't answer.  See `jabber-keepalive-interval'
@@ -282,9 +295,9 @@ on the client doing this, e.g. Openfire.
 If you want to verify that the server is able to answer, see
 `jabber-keepalive-start' for another mechanism.")
 
-(custom-autoload 'jabber-whitespace-ping-interval "jabber-keepalive" t)
+(custom-autoload (quote jabber-whitespace-ping-interval) "jabber-keepalive" t)
 
-(autoload 'jabber-whitespace-ping-start "jabber-keepalive" "\
+(autoload (quote jabber-whitespace-ping-start) "jabber-keepalive" "\
 Start sending whitespace pings at regular intervals.
 See `jabber-whitespace-ping-interval'.
 
@@ -295,20 +308,39 @@ accounts.
 
 ;;;***
 
-;;;### (autoloads nil "jabber-keymap" "jabber-keymap.el" (18447 55296))
+;;;### (autoloads nil "jabber-keymap" "jabber-keymap.el" (18447 60977))
 ;;; Generated autoloads from jabber-keymap.el
 
-(defvar jabber-global-keymap (let ((map (make-sparse-keymap))) (define-key map "" 'jabber-connect-all) (define-key map "" 'jabber-disconnect) (define-key map "" 'jabber-switch-to-roster-buffer) (define-key map "\n" 'jabber-chat-with) (define-key map "\f" 'jabber-activity-switch-to) (define-key map "" 'jabber-send-away-presence) (define-key map "" 'jabber-send-default-presence) (define-key map "" 'jabber-send-xa-presence) (define-key map "" 'jabber-send-presence) map) "\
+(defvar jabber-global-keymap (let ((map (make-sparse-keymap))) (define-key map "" (quote jabber-connect-all)) (define-key map "" (quote jabber-disconnect)) (define-key map "" (quote jabber-switch-to-roster-buffer)) (define-key map "\n" (quote jabber-chat-with)) (define-key map "\f" (quote jabber-activity-switch-to)) (define-key map "" (quote jabber-send-away-presence)) (define-key map "" (quote jabber-send-default-presence)) (define-key map "" (quote jabber-send-xa-presence)) (define-key map "" (quote jabber-send-presence)) map) "\
 Global Jabber keymap (usually under C-x C-j)")
 
 (define-key ctl-x-map "\n" jabber-global-keymap)
 
 ;;;***
 
+;;;### (autoloads (jabber-display-menu) "jabber-menu" "jabber-menu.el"
+;;;;;;  (18748 17385))
+;;; Generated autoloads from jabber-menu.el
+
+(defvar jabber-menu (let ((map (make-sparse-keymap "jabber-menu"))) (define-key map [jabber-menu-connect] (quote ("Connect" . jabber-connect-all))) (define-key map [jabber-menu-disconnect] (quote ("Disconnect" . jabber-disconnect))) (define-key map [jabber-menu-roster] (quote ("Switch to roster" . jabber-switch-to-roster-buffer))) (define-key map [jabber-menu-customize] (quote ("Customize" . jabber-customize))) (define-key map [jabber-menu-info] (quote ("Help" . jabber-info))) (define-key map [jabber-menu-status] (cons "Set Status" (make-sparse-keymap "set-status"))) (define-key map [jabber-menu-status jabber-menu-status-chat] (quote ("Chatty" lambda nil (interactive) (jabber-send-presence "chat" (jabber-read-with-input-method "status message: " *jabber-current-status* (quote *jabber-status-history*)) *jabber-current-priority*)))) (define-key map [jabber-menu-status jabber-menu-status-dnd] (quote ("Do not Disturb" lambda nil (interactive) (jabber-send-presence "dnd" (jabber-read-with-input-method "status message: " *jabber-current-status* (quote *jabber-status-history*)) *jabber-current-priority*)))) (define-key map [jabber-menu-status jabber-menu-status-xa] (quote ("Extended Away" . jabber-send-xa-presence))) (define-key map [jabber-menu-status jabber-menu-status-away] (quote ("Away" . jabber-send-away-presence))) (define-key map [jabber-menu-status jabber-menu-status-online] (quote ("Online" . jabber-send-default-presence))) map))
+
+(defvar jabber-display-menu (quote maybe) "\
+Decide whether the \"Jabber\" menu is displayed in the menu bar.
+If t, always display.
+If nil, never display.
+If maybe, display if any of `jabber-account-list' or `jabber-connections'
+is non-nil.")
+
+(custom-autoload (quote jabber-display-menu) "jabber-menu" t)
+
+(define-key-after global-map [menu-bar jabber-menu] (list (quote menu-item) "Jabber" jabber-menu :visible (quote (or (eq jabber-display-menu t) (and (eq jabber-display-menu (quote maybe)) (or jabber-account-list (bound-and-true-p jabber-connections)))))))
+
+;;;***
+
 ;;;### (autoloads (jabber-muc-private-message-p jabber-muc-sender-p
 ;;;;;;  jabber-muc-message-p jabber-muc-private-get-buffer jabber-muc-get-buffer
 ;;;;;;  jabber-muc-autojoin jabber-muc-default-nicknames) "jabber-muc"
-;;;;;;  "jabber-muc.el" (18646 36066))
+;;;;;;  "jabber-muc.el" (18824 58732))
 ;;; Generated autoloads from jabber-muc.el
 
 (defvar *jabber-active-groupchats* nil "\
@@ -319,7 +351,7 @@ Values are strings.")
 (defvar jabber-muc-default-nicknames nil "\
 Default nickname for specific MUC rooms.")
 
-(custom-autoload 'jabber-muc-default-nicknames "jabber-muc" t)
+(custom-autoload (quote jabber-muc-default-nicknames) "jabber-muc" t)
 
 (defvar jabber-muc-autojoin nil "\
 List of MUC rooms to automatically join on connection.
@@ -327,39 +359,39 @@ This list is saved in your Emacs customizations.  You can also store
 such a list on the Jabber server, where it is available to every
 client; see `jabber-edit-bookmarks'.")
 
-(custom-autoload 'jabber-muc-autojoin "jabber-muc" t)
+(custom-autoload (quote jabber-muc-autojoin) "jabber-muc" t)
 
-(defvar jabber-muc-printers 'nil "\
+(defvar jabber-muc-printers (quote nil) "\
 List of functions that may be able to print part of a MUC message.
 This gets prepended to `jabber-chat-printers', which see.")
 
-(autoload 'jabber-muc-get-buffer "jabber-muc" "\
+(autoload (quote jabber-muc-get-buffer) "jabber-muc" "\
 Return the chat buffer for chatroom GROUP.
 Either a string or a buffer is returned, so use `get-buffer' or
 `get-buffer-create'.
 
 \(fn GROUP)" nil nil)
 
-(autoload 'jabber-muc-private-get-buffer "jabber-muc" "\
+(autoload (quote jabber-muc-private-get-buffer) "jabber-muc" "\
 Return the chat buffer for private chat with NICKNAME in GROUP.
 Either a string or a buffer is returned, so use `get-buffer' or
 `get-buffer-create'.
 
 \(fn GROUP NICKNAME)" nil nil)
 
-(autoload 'jabber-muc-message-p "jabber-muc" "\
+(autoload (quote jabber-muc-message-p) "jabber-muc" "\
 Return non-nil if MESSAGE is a groupchat message.
 That does not include private messages in a groupchat, but does
 include groupchat invites.
 
 \(fn MESSAGE)" nil nil)
 
-(autoload 'jabber-muc-sender-p "jabber-muc" "\
+(autoload (quote jabber-muc-sender-p) "jabber-muc" "\
 Return non-nil if JID is a full JID of an MUC participant.
 
 \(fn JID)" nil nil)
 
-(autoload 'jabber-muc-private-message-p "jabber-muc" "\
+(autoload (quote jabber-muc-private-message-p) "jabber-muc" "\
 Return non-nil if MESSAGE is a private message in a groupchat.
 
 \(fn MESSAGE)" nil nil)
@@ -367,10 +399,10 @@ Return non-nil if MESSAGE is a private message in a groupchat.
 ;;;***
 
 ;;;### (autoloads (jabber-muc-looks-like-personal-p) "jabber-muc-nick-completion"
-;;;;;;  "jabber-muc-nick-completion.el" (18608 33376))
+;;;;;;  "jabber-muc-nick-completion.el" (18559 10723))
 ;;; Generated autoloads from jabber-muc-nick-completion.el
 
-(autoload 'jabber-muc-looks-like-personal-p "jabber-muc-nick-completion" "\
+(autoload (quote jabber-muc-looks-like-personal-p) "jabber-muc-nick-completion" "\
 Return non-nil if jabber MESSAGE is addresed to me.
 Optional argument GROUP to look.
 
@@ -379,15 +411,15 @@ Optional argument GROUP to look.
 ;;;***
 
 ;;;### (autoloads (jabber-send-default-presence jabber-send-presence)
-;;;;;;  "jabber-presence" "jabber-presence.el" (18644 3281))
+;;;;;;  "jabber-presence" "jabber-presence.el" (18824 58597))
 ;;; Generated autoloads from jabber-presence.el
 
-(autoload 'jabber-send-presence "jabber-presence" "\
+(autoload (quote jabber-send-presence) "jabber-presence" "\
 Set presence for all accounts.
 
 \(fn SHOW STATUS PRIORITY)" t nil)
 
-(autoload 'jabber-send-default-presence "jabber-presence" "\
+(autoload (quote jabber-send-default-presence) "jabber-presence" "\
 Send default presence.
 Default presence is specified by `jabber-default-priority', `jabber-default-show',
 and `jabber-default-status'.
@@ -397,10 +429,10 @@ and `jabber-default-status'.
 ;;;***
 
 ;;;### (autoloads (jabber-private-set jabber-private-get) "jabber-private"
-;;;;;;  "jabber-private.el" (18442 56829))
+;;;;;;  "jabber-private.el" (18442 57589))
 ;;; Generated autoloads from jabber-private.el
 
-(autoload 'jabber-private-get "jabber-private" "\
+(autoload (quote jabber-private-get) "jabber-private" "\
 Retrieve an item from private XML storage.
 The item to retrieve is identified by NODE-NAME (a symbol) and
 NAMESPACE (a string).
@@ -413,7 +445,7 @@ result.
 
 \(fn JC NODE-NAME NAMESPACE SUCCESS-CALLBACK ERROR-CALLBACK)" nil nil)
 
-(autoload 'jabber-private-set "jabber-private" "\
+(autoload (quote jabber-private-set) "jabber-private" "\
 Store FRAGMENT in private XML storage.
 SUCCESS-CALLBACK, SUCCESS-CLOSURE-DATA, ERROR-CALLBACK and
 ERROR-CLOSURE-DATA are used as in `jabber-send-iq'.
@@ -422,22 +454,41 @@ ERROR-CLOSURE-DATA are used as in `jabber-send-iq'.
 
 ;;;***
 
-;;;### (autoloads nil nil ("+jabber-muc-new.el" "fsm.el" "jabber-ahc-presence.el"
-;;;;;;  "jabber-ahc.el" "jabber-alert.el" "jabber-autoaway.el" "jabber-avatar.el"
-;;;;;;  "jabber-browse.el" "jabber-chatstates.el" "jabber-conn.el"
-;;;;;;  "jabber-disco.el" "jabber-events.el" "jabber-feature-neg.el"
+;;;### (autoloads (jabber-roster-update jabber-switch-to-roster-buffer)
+;;;;;;  "jabber-roster" "jabber-roster.el" (18665 62229))
+;;; Generated autoloads from jabber-roster.el
+
+(autoload (quote jabber-switch-to-roster-buffer) "jabber-roster" "\
+Switch to roster buffer.
+Optional JC argument is ignored; it's there so this function can
+be used in `jabber-post-connection-hooks'.
+
+\(fn &optional JC)" t nil)
+
+(autoload (quote jabber-roster-update) "jabber-roster" "\
+Update roster, in memory and on display.
+Add NEW-ITEMS, update CHANGED-ITEMS and remove DELETED-ITEMS, all
+three being lists of JID symbols.
+
+\(fn JC NEW-ITEMS CHANGED-ITEMS DELETED-ITEMS)" nil nil)
+
+;;;***
+
+;;;### (autoloads nil nil ("fsm.el" "jabber-ahc-presence.el" "jabber-ahc.el"
+;;;;;;  "jabber-alert.el" "jabber-avatar.el" "jabber-browse.el" "jabber-chatstates.el"
+;;;;;;  "jabber-conn.el" "jabber-disco.el" "jabber-events.el" "jabber-feature-neg.el"
 ;;;;;;  "jabber-festival.el" "jabber-ft-client.el" "jabber-ft-common.el"
 ;;;;;;  "jabber-ft-server.el" "jabber-history.el" "jabber-iq.el"
-;;;;;;  "jabber-libnotify.el" "jabber-logon.el" "jabber-menu.el"
-;;;;;;  "jabber-modeline.el" "jabber-newdisco.el" "jabber-osd.el"
-;;;;;;  "jabber-ourversion.el" "jabber-ratpoison.el" "jabber-register.el"
-;;;;;;  "jabber-roster.el" "jabber-sasl.el" "jabber-sawfish.el" "jabber-screen.el"
-;;;;;;  "jabber-search.el" "jabber-si-client.el" "jabber-si-common.el"
-;;;;;;  "jabber-si-server.el" "jabber-socks5.el" "jabber-time.el"
-;;;;;;  "jabber-truncate.el" "jabber-util.el" "jabber-vcard-avatars.el"
-;;;;;;  "jabber-vcard.el" "jabber-version.el" "jabber-watch.el" "jabber-widget.el"
-;;;;;;  "jabber-wmii.el" "jabber-xmessage.el" "jabber-xml.el" "srv.el")
-;;;;;;  (18658 5220 465344))
+;;;;;;  "jabber-libnotify.el" "jabber-logon.el" "jabber-modeline.el"
+;;;;;;  "jabber-newdisco.el" "jabber-osd.el" "jabber-ourversion.el"
+;;;;;;  "jabber-ratpoison.el" "jabber-register.el" "jabber-sasl.el"
+;;;;;;  "jabber-sawfish.el" "jabber-screen.el" "jabber-search.el"
+;;;;;;  "jabber-si-client.el" "jabber-si-common.el" "jabber-si-server.el"
+;;;;;;  "jabber-socks5.el" "jabber-time.el" "jabber-truncate.el"
+;;;;;;  "jabber-util.el" "jabber-vcard-avatars.el" "jabber-vcard.el"
+;;;;;;  "jabber-version.el" "jabber-watch.el" "jabber-widget.el"
+;;;;;;  "jabber-wmii.el" "jabber-xmessage.el" "jabber-xml.el" "make-autoloads.el"
+;;;;;;  "srv.el") (18844 41944 760000))
 
 ;;;***
 
