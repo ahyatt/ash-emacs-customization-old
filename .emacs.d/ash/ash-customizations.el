@@ -123,7 +123,7 @@ styles that aren't already using two or four spaces."
 (require 'key-chord)
 (key-chord-mode 1)
 (key-chord-define-global "jk" 'dabbrev-expand)
-(key-chord-define-global "l;" 'egg-status)
+(key-chord-define-global "l;" 'magit-status)
 (key-chord-define-global "aa" 'anything)
 (key-chord-define-global "s;" 'anything-select-action)
 
