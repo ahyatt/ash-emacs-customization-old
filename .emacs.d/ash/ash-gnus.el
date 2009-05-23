@@ -52,4 +52,6 @@
 (defvar ash-last-mail-check (current-time))
 (defvar ash-old-background-color nil)
 
+(setq gnus-single-article-buffer nil)
+
 (provide 'ash-gnus)
