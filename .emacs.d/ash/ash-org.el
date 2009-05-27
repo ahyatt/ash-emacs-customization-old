@@ -47,5 +47,9 @@
 (global-set-key [print] 'org-agenda-goto-today)
 
 (setq org-deadline-warning-days 1)
+(setq org-agenda-start-with-log-mode t)
+
+(setq org-completion-use-ido t)
+(setq org-use-fast-todo-selection t)
 
 (provide 'ash-org)
