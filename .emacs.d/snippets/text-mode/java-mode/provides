@@ -1,0 +1,6 @@
+#name : guice provider
+# --
+@Provides
+private $1 provides$1() {
+  $0
+}
