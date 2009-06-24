@@ -154,5 +154,21 @@ styles that aren't already using two or four spaces."
           '(lambda ()
              (define-key dired-mode-map "e" 'wdired-change-to-wdired-mode)))
 
+;; yas (dynamic templates)
+(require 'yasnippet)
+(yas/initialize)
+(yas/load-directory "~/.emacs.d/snippets")
+
+(add-hook 'yas/after-exit-snippet-hook
+          '(lambda ()
+             (indent-region yas/snippet-beg
+                            yas/snippet-end)))
+
+
+(defadvice yank (after c-indent-after-yank activate)
+  "Do an indent after a yank"
+  (if c-buffer-is-cc-mode
+      (let ((transient-mark-mode nil))
+        (indent-region (region-beginning) (region-end) nil))))
 
 (provide 'ash-customizations)
