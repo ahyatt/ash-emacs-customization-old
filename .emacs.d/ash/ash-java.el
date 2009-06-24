@@ -1,21 +1,5 @@
 (require 'java-mode-indent-annotations)
 
-(defadvice yank (after java-indent-after-yank activate)
-  "Do an indent after a yank"
-  (if (eq major-mode 'java-mode)
-      (let ((transient-mark-mode nil))
-        (indent-region (region-beginning) (region-end) nil))))
-
-;; yas (dynamic templates)
-(require 'yasnippet)
-(yas/initialize)
-(yas/load-directory "~/.emacs.d/snippets")
-
-(add-hook 'yas/after-exit-snippet-hook
-          '(lambda ()
-             (indent-region yas/snippet-beg
-                            yas/snippet-end)))
-
 (defun ash-c-mode-customizations ()
   (setq c-basic-offset 2)
   (c-subword-mode)
