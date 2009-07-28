@@ -66,7 +66,9 @@ styles that aren't already using two or four spaces."
 	       ("erc" (mode . erc-mode))
 	       ("org" (mode . org-mode))
 	       ("git" (mode . git-status-mode))
-	       ("c++" (mode . cc-mode))
+	       ("c++" (or
+                       (mode . cc-mode)
+                       (mode . c++-mode)))
 	       ("emacs" (or
 			 (name . "^\\*scratch\\*$")
 			 (name . "^\\*Messages\\*$")))
@@ -127,6 +129,8 @@ styles that aren't already using two or four spaces."
 (key-chord-define-global "aa" 'anything)
 (key-chord-define-global "s;" 'anything-select-action)
 (key-chord-define-global "`1" 'yas/expand)
+(key-chord-define-global "-=" (lambda () (interactive) (switch-to-buffer "*compilation*")))
+
 
 (require 'anything)
 (require 'anything-config)
