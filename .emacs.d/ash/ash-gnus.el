@@ -1,5 +1,6 @@
 ;(require 'gnus-load)
 
+(set-face-foreground 'gnus-group-mail-3 "blue3")
 (setq bbdb-always-add-addresses 'ash-add-addresses-p)
 (setq bbdb-complete-name-allow-cycling t)
 (setq bbdb-completion-display-record nil)
