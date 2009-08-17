@@ -24,6 +24,9 @@
 (setq org-link-frame-setup '((gnus . gnus)
 			     (file . find-file-other-window)))
 
+(set-face-attribute 'org-mode-line-clock nil
+                    :family "Lucida Sans Italic" :italic t)
+
 (require 'remember)
 (require 'org-remember)
 (org-remember-insinuate)

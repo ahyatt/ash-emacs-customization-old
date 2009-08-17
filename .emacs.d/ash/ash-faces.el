@@ -162,4 +162,18 @@ hooks."
  '(:background "#ff9999" :foreground "black")
  '(:background "red" :foreground "white"))
 
+;; Anonymous Pro from http://www.ms-studio.com/FontSales/anonymouspro.html
+(set-face-attribute 'default nil :family "Anonymous Pro" :height my-font-size :background "white" :foreground "black")
+(set-face-attribute 'fixed-pitch nil :family "Inconsolata" :height my-font-size)
+(set-face-attribute 'variable-pitch nil :family "Lucida Sans" :height my-font-size)
+(set-face-attribute 'modeline nil :family "Lucida Sans" :height (- my-font-size 10))
+(set-face-attribute 'font-lock-function-name-face nil
+                    :family "Lucida Sans Italic" :height (+ 20 my-font-size) :italic t)
+
+(set-face-attribute 'font-lock-comment-face nil :family "Lucida Sans" :height my-font-size)
+(set-face-foreground 'font-lock-comment-face "black")
+(set-face-background 'font-lock-comment-face "#ddddcc")
+(make-face-unitalic 'font-lock-comment-face)
+(make-face-bold 'font-lock-comment-face)
+
 (provide 'ash-faces)

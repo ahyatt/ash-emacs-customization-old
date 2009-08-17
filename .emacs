@@ -69,8 +69,22 @@
  '(jabber-alert-muc-hooks (quote (jabber-muc-scroll)))
  '(jabber-alert-presence-hooks (quote (jabber-presence-update-roster)))
  '(jabber-mode-line-mode t)
+ '(jabber-vcard-avatars-retrieve t)
+ '(midnight-mode nil nil (midnight))
+ '(org-clock-string-limit 50)
+ '(org-todo-keywords (quote ((sequence "TODO(t)" "STARTED(s)" "WAITING(w@/!)" "|" "DONE(d)" "OBSOLETE(o)"))))
  '(show-paren-mode t)
- '(vc-follow-symlinks t))
+ '(twit-pass "")
+ '(twit-user "andrewhyatt")
+ '(twittering-username "andrewhyatt" t)
+ '(vc-follow-symlinks t)
+ '(visible-bell t))
 
 (put 'erase-buffer 'disabled nil)
 (put 'narrow-to-region 'disabled nil)
+(custom-set-faces
+  ;; custom-set-faces was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+ )
