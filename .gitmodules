@@ -1,9 +1,12 @@
-[submodule "org-mode"]
-	path = .emacs.d/org-mode
-	url = git://repo.or.cz/org-mode.git
 [submodule ".emacs.d/egg"]
 	path = .emacs.d/egg
 	url = git://github.com/bogolisk/egg.git
 [submodule ".emacs.d/org-mode"]
 	path = .emacs.d/org-mode
 	url = git://repo.or.cz/org-mode.git
+[submodule ".emacs.d/w3"]
+	path = .emacs.d/w3
+	url = git://git.sv.gnu.org/w3.git
+[submodule "./.emacs.d/magit"]
+	path = ./.emacs.d/magit
+	url = git://gitorious.org/magit/mainline.git

@@ -66,7 +66,9 @@ styles that aren't already using two or four spaces."
 	       ("erc" (mode . erc-mode))
 	       ("org" (mode . org-mode))
 	       ("git" (mode . git-status-mode))
-	       ("c++" (mode . cc-mode))
+	       ("c++" (or
+                       (mode . cc-mode)
+                       (mode . c++-mode)))
 	       ("emacs" (or
 			 (name . "^\\*scratch\\*$")
 			 (name . "^\\*Messages\\*$")))
@@ -123,9 +125,12 @@ styles that aren't already using two or four spaces."
 (require 'key-chord)
 (key-chord-mode 1)
 (key-chord-define-global "jk" 'dabbrev-expand)
-(key-chord-define-global "l;" 'egg-status)
+(key-chord-define-global "l;" 'magit-status)
 (key-chord-define-global "aa" 'anything)
 (key-chord-define-global "s;" 'anything-select-action)
+(key-chord-define-global "`1" 'yas/expand)
+(key-chord-define-global "-=" (lambda () (interactive) (switch-to-buffer "*compilation*")))
+
 
 (require 'anything)
 (require 'anything-config)
@@ -135,15 +140,39 @@ styles that aren't already using two or four spaces."
       (list anything-c-source-bookmarks
             anything-c-source-buffers
             anything-c-source-buffer-not-found
-            anything-c-source-file-name-history
             anything-c-source-info-pages
             anything-c-source-man-pages
-            anything-c-source-locate
+            anything-c-source-recentf
             anything-c-source-calculation-result
             anything-c-source-evaluation-result
             anything-c-source-complex-command-history
             anything-c-source-google-suggest
             anything-c-source-emacs-commands
+            anything-c-source-org-headline
+            anything-c-source-jabber-contacts
+            anything-c-source-kill-ring
+            anything-c-source-emacs-process
             anything-c-source-bbdb))
+
+(add-hook 'dired-mode-hook
+          '(lambda ()
+             (define-key dired-mode-map "e" 'wdired-change-to-wdired-mode)))
+
+;; yas (dynamic templates)
+(require 'yasnippet)
+(yas/initialize)
+(yas/load-directory "~/.emacs.d/snippets")
+
+(add-hook 'yas/after-exit-snippet-hook
+          '(lambda ()
+             (indent-region yas/snippet-beg
+                            yas/snippet-end)))
+
+
+(defadvice yank (after c-indent-after-yank activate)
+  "Do an indent after a yank"
+  (if c-buffer-is-cc-mode
+      (let ((transient-mark-mode nil))
+        (indent-region (region-beginning) (region-end) nil))))
 
 (provide 'ash-customizations)

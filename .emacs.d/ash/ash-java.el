@@ -1,24 +1,9 @@
 (require 'java-mode-indent-annotations)
 
-(defadvice yank (after java-indent-after-yank activate)
-  "Do an indent after a yank"
-  (if (eq major-mode 'java-mode)
-      (let ((transient-mark-mode nil))
-        (indent-region (region-beginning) (region-end) nil))))
-
-;; yas (dynamic templates)
-(require 'yasnippet)
-(yas/initialize)
-(yas/load-directory "~/.emacs.d/snippets")
-
-(add-hook 'yas/after-exit-snippet-hook
-          '(lambda ()
-             (indent-region yas/snippet-beg
-                            yas/snippet-end)))
-
 (defun ash-c-mode-customizations ()
   (setq c-basic-offset 2)
   (c-subword-mode)
+  (hs-org/minor-mode)
   (add-to-list 'c-cleanup-list 'comment-close-slash))
 
 (defun ash-java-mode-customizations ()
@@ -209,21 +194,8 @@ register 105 (i).  Use this in conjunction with
 ;; Not yet using this
 ;; (setq hippie-expand-try-functions-list
 ;;       (append hippie-expand-try-functions-list '(try-expand-tag)))
-
-(setq semanticdb-default-save-directory "~/tmp/semantic.cache")
-(require 'cedet)
-(require 'wisent-java)
-(semantic-load-enable-minimum-features)
-(semantic-load-enable-code-helpers)
-(setq global-senator-minor-mode t)
-(add-hook 'java-mode-hook 'semantic-new-buffer-fcn t)
-(add-hook 'java-mode-hook 'senator-minor-mode t)
-(add-hook 'java-mode-hook 'semantic-decoration-mode t)
-(add-hook 'java-mode-hook 'semantic-stickyfunc-mode t)
-;; This seems to cause infinite reloading
-;(add-hook 'java-mode-hook 'semantic-mru-bookmark-mode t)
-
 (require 'doc-mode)
 (add-hook 'java-mode-hook 'doc-mode t)
+(require 'hideshow-org)
 
 (provide 'ash-java)

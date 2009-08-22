@@ -1,0 +1,6 @@
+#name : cl ...
+# --
+** TODO Ensure all tests pass
+** TODO Send ${1:CL Description} to reviewers
+** TODO Wait for approval for $1 CL
+** TODO Submit $1 CL

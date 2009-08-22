@@ -34,7 +34,7 @@
 (require 'ash-erc)
 (require 'w3m-load)
 (require 'ash-faces)
-(require 'git)
+(require 'magit)
 (require 'anything)
 (require 'egg)
 (require 'jabber)
@@ -52,6 +52,9 @@
 (setq browse-url-browser-function
       '(("google.com" . w3m-browse-url)
         ("." . browse-url-firefox)))
+
+(autoload 'js2-mode "js2" nil t)
+(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 
 (require 'midnight)
 (setq midnight-mode t)
