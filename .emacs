@@ -13,6 +13,12 @@
         		  "~/.emacs.d/icicles"
 			  "~/.emacs.d/git") load-path))
 
+(require 'epa-file)
+(epa-file-enable)
+
+(require 'android-mode)
+(setq android-mode-sdk-dir "~/android-sdk-mac_x86-1.5_r1")
+
 ;; workaround for emacs 23 bug
 (or (functionp 'if)
     (defadvice functionp (around workaround-bug (object) activate)
@@ -50,6 +56,13 @@
 (require 'midnight)
 (setq midnight-mode t)
 (jabber-autoaway-start)
+
+(add-hook 'eshell-mode-hook
+          '(lambda ()
+             (setenv
+              "PATH"
+              (concat "/Users/andy/android-sdk-mac_x86-1.5_r1/tools:"
+                      (getenv "PATH")))))
 
 (setq-default show-trailing-whitespace t)
 
