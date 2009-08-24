@@ -184,6 +184,7 @@ styles that aren't already using two or four spaces."
 (defun sudo-edit-current-file ()
   (interactive)
   (find-alternate-file (concat "/sudo:root@localhost:" (buffer-file-name (current-buffer)))))
-(key-chord-define-global "sd" 'sudo-edit-current-file)
+(key-chord-define-global "fg" 'sudo-edit-current-file)
+
 
 (provide 'ash-customizations)
