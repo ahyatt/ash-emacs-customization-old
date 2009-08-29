@@ -126,33 +126,10 @@ styles that aren't already using two or four spaces."
 (key-chord-mode 1)
 (key-chord-define-global "jk" 'dabbrev-expand)
 (key-chord-define-global "l;" 'magit-status)
-(key-chord-define-global "aa" 'anything)
-(key-chord-define-global "s;" 'anything-select-action)
 (key-chord-define-global "`1" 'yas/expand)
 (key-chord-define-global "-=" (lambda () (interactive) (switch-to-buffer "*compilation*")))
 
-
-(require 'anything)
-(require 'anything-config)
 (require 'bbdb)
-
-(setq anything-sources
-      (list anything-c-source-bookmarks
-            anything-c-source-buffers
-            anything-c-source-buffer-not-found
-            anything-c-source-info-pages
-            anything-c-source-man-pages
-            anything-c-source-recentf
-            anything-c-source-calculation-result
-            anything-c-source-evaluation-result
-            anything-c-source-complex-command-history
-            anything-c-source-google-suggest
-            anything-c-source-emacs-commands
-            anything-c-source-org-headline
-            anything-c-source-jabber-contacts
-            anything-c-source-kill-ring
-            anything-c-source-emacs-process
-            anything-c-source-bbdb))
 
 (add-hook 'dired-mode-hook
           '(lambda ()
