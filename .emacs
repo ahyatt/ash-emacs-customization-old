@@ -11,6 +11,7 @@
                           "~/.emacs.d/emacs-jabber"
                           "~/.emacs.d/w3m"
         		  "~/.emacs.d/icicles"
+                          "~/.emacs.d/dvc"
 			  "~/.emacs.d/git") load-path))
 
 ;; workaround for emacs 23 bug
@@ -32,6 +33,9 @@
 (require 'anything)
 (require 'egg)
 (require 'jabber)
+(require 'js2-mode)
+(require 'twittering-mode)
+(require 'dvc-autoloads)
 
 (push '(font-backend xft x) default-frame-alist)
 
