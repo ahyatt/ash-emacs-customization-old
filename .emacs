@@ -11,6 +11,7 @@
                           "~/.emacs.d/emacs-jabber"
                           "~/.emacs.d/w3m"
         		  "~/.emacs.d/icicles"
+                          "~/.emacs.d/dvc"
 			  "~/.emacs.d/git") load-path))
 
 (require 'epa-file)
@@ -38,12 +39,14 @@
 (require 'anything)
 (require 'egg)
 (require 'jabber)
+(require 'js2-mode)
+(require 'twittering-mode)
+(require 'dvc-autoloads)
 
 (push '(font-backend xft x) default-frame-alist)
 
 (setq Info-default-directory-list 
       (cons "~/src/ash-elisp/info" Info-default-directory-list))
-(color-theme-vivid-chalk)
 
 (key-chord-define-global "aa" 'anything)
 (key-chord-define-global "s;" 'anything-select-action)
@@ -83,22 +86,22 @@
  '(jabber-alert-muc-hooks (quote (jabber-muc-scroll)))
  '(jabber-alert-presence-hooks (quote (jabber-presence-update-roster)))
  '(jabber-mode-line-mode t)
+ '(jabber-vcard-avatars-retrieve t)
+ '(midnight-mode nil nil (midnight))
+ '(org-clock-string-limit 50)
+ '(org-todo-keywords (quote ((sequence "TODO(t)" "STARTED(s)" "WAITING(w@/!)" "|" "DONE(d)" "OBSOLETE(o)"))))
  '(show-paren-mode t)
- '(vc-follow-symlinks t))
+ '(twit-pass "")
+ '(twit-user "andrewhyatt")
+ '(twittering-username "andrewhyatt" t)
+ '(vc-follow-symlinks t)
+ '(visible-bell t))
 
 (put 'erase-buffer 'disabled nil)
+(put 'narrow-to-region 'disabled nil)
 (custom-set-faces
   ;; custom-set-faces was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- '(anything-isearch-match ((t (:background "Yellow" :foreground "black"))))
- '(extra-java-font-lock-link-face ((t (:foreground "green" :underline t :slant normal))))
- '(font-lock-comment-face ((t (:foreground "#bb55ee" :slant italic))))
- '(font-lock-doc-face ((t (:foreground "LightSalmon" :height 0.8 :family "Bitstream Vera Serif"))))
- '(font-lock-function-name-face ((t (:foreground "#ffcc00" :weight bold))))
- '(git-header-face ((((class color) (background dark)) (:foreground "light blue"))))
- '(jabber-chat-prompt-local ((t (:foreground "light blue" :weight bold))))
- '(jabber-roster-user-online ((t (:foreground "light blue" :slant normal :weight bold)))))
-
-(put 'narrow-to-region 'disabled nil)
+ )

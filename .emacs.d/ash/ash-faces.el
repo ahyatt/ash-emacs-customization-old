@@ -1,204 +1,172 @@
-;; Term colors coordinated with the faces below.
-(setq
- term-default-bg-color "black"
- term-default-fg-color "white")
+;; Font setup, mostly copied from amitp
+; TODO: running in daemon mode confuses my-font-size
+(defvar my-font-size (if (equal ":0.0" (getenv "DISPLAY")) 140 120))
+;; Anonymous Pro from http://www.ms-studio.com/FontSales/anonymouspro.html
 
-(require 'color-theme)
+(defvar ash-default-font "Anonymous Pro")
+(defvar ash-fixed-pitch-font "Inconsolata")
+(defvar ash-lucida-sans-font "Lucida Sans")
+(defvar ash-lucida-sans-italic-font "Lucida Sans Italic")
 
-(defun color-theme-vivid-chalk ()
-  "Based on Vivid Chalk, a vim port of Vibrant Ink.
-Modified by Phil Hagelberg to fix minor garishness, and by
-Andrew Hyatt to add more customizations."
-  ;; Modified string, type, comment faces, and highlight background
-  (interactive)
-  (color-theme-install
-   '(color-theme-vivid-chalk
-     ((background-color . "black")
-      (background-mode . dark)
-      (border-color . "black")
-      (cursor-color . "white")
-      (foreground-color . "white")
-      (list-matching-lines-face . bold)
-      (view-highlight-face . highlight))
-     (default ((t (nil))))
-     (bold ((t (:bold t))))
-     (bold-italic ((t (:italic t :bold t))))
-     (erc-input ((t (:foreground "yellow"))))
-     (erc-input-face ((t (:foreground "yellow"))))
-     (fringe ((t (:background "black"))))
-     (font-lock-builtin-face ((t (:foreground "#aaccff"))))
-     (font-lock-comment-face ((t (:italic t :foreground "#bb55ee"))))
-     (font-lock-comment-delimiter-face ((t (:foreground "#9933cc"))))
-     (font-lock-constant-face ((t (:foreground "#339999"))))
-     (font-lock-function-name-face ((t (:foreground "#ffcc00"))))
-     (font-lock-keyword-face ((t (:foreground "#ff6600"))))
-     (font-lock-preprocessor-face ((t (:foreground "#aaffff"))))
-     (font-lock-reference-face ((t (:foreground "LightSteelBlue"))))
-     (font-lock-string-face ((t (:foreground "DarkOliveGreen3"))))
-     (font-lock-doc-face ((t (:foreground "LightSalmon"))))
-     (font-lock-type-face ((t (:italic t :foreground "burlywood3")))) 
-     (font-lock-variable-name-face ((t (:foreground "#aaccff"))))
-     (font-lock-warning-face ((t (:bold t :foreground "Pink"))))
-     (paren-face-match-light ((t (:background "#222222"))))
-     (highlight ((t (:foreground "purple"))))
-     (italic ((t (:italic t))))
-     (modeline ((t (:background "#a5baf1" :foreground "black") :height 80)))
-     (modeline-buffer-id ((t (:background "#a5baf1" :foreground
-"black"))))
-     (modeline-mousable ((t (:background "#a5baf1" :foreground
-"black"))))
-     (modeline-mousable-minor-mode ((t (:background
-"#a5baf1" :foreground "black"))))
-     (org-done ((t (:foreground "ForestGreen" :box (:line-width 2 :color "grey75" :style released-button) :weight bold))))
-     (org-todo ((t (:background "grey25" :foreground "Orange" :box (:line-width 2 :color "grey75" :style released-button) :weight bold))))
-     (region ((t (:background "#555577"))))
-     (primary-selection ((t (:background "#555577"))))
-     (isearch ((t (:background "#555555"))))
-     (zmacs-region ((t (:background "#555577"))))
-     (secondary-selection ((t (:background "darkslateblue"))))
-     (flymake-errline ((t (:background "LightSalmon" :foreground
-"black"))))
-     (flymake-warnline ((t (:background "LightSteelBlue" :foreground
-"black"))))
-     (underline ((t (:underline t))))
-     (minibuffer-prompt ((t (:bold t :foreground "#ff6600")))))))
+;;; Try to load a package, but continue if it doesn't exist.  This
+;;; allows my emacs startup file to work on a larger variety of
+;;; systems and Emacs versions.
+(defmacro try-require (package &rest forms)
+  "Execute FORMS only if (require PACKAGE) succeeds."
+  (declare (indent 1))
+  `(when (condition-case nil
+             (require ,package)
+           (error (message "Package %s could not be loaded" ,package) nil))
+     ,@forms))
 
-(defun color-theme-ahyatt-green ()
-  "Modification to low-contrast White-on-Gray by S.Pokrovsky.
+;; I want some colors to be different in a GUI and in a TTY.  With
+;; MultiTTY, I need to reset these colors for each frame, because some
+;; frames are GUI and some are TTY.  The variable my-frame-faces
+;; stores the attributes that vary for GUI and TTY;
+;; set-frame-face-attributes adds to this list.  There might be a way to
+;; do this with custom but I haven't investigated it. TODO: need this
+;; for ediff-*, pabbrev-suggestions-face
+(defvar my-frame-faces nil
+  "Face attributes that are different for TTY and GUI. Should be list of
+(face (GUI attribute list) (TTY attribute list)).")
 
-The following might be a good addition to your .Xdefaults file:
+(defun set-frame-face-attributes (face gui-spec tty-spec)
+  "Add face-attributes to FACE that apply for GUI and TTY. For example:
 
-Emacs.pane.menubar.background: darkGrey
-Emacs.pane.menubar.foreground: black"
-  (interactive)
-  (color-theme-install
-   '(color-theme-pok-wog
-     ((foreground-color . "White")
-      (background-color . "gray20")
-      (mouse-color . "gold")
-      (cursor-color . "Cyan")
-      (border-color . "black")
-      (background-mode . dark))
-     (default ((t (nil))))
-     (bold ((t (:bold t :foreground "Wheat"))))
-     (bold-italic ((t (:italic t :bold t :foreground "wheat"))))
-     (calendar-today-face ((t (:underline t :foreground "white"))))
-     (diary-face ((t (:foreground "red"))))
-     (font-lock-builtin-face ((t (:bold t :foreground "cyan"))))
-     (font-lock-comment-face ((t (:foreground "Gold"))))
-     (font-lock-constant-face ((t (:bold t :foreground "LightSteelBlue"))))
-     (font-lock-function-name-face ((t (:bold t :foreground "Yellow"))))
-     (font-lock-keyword-face ((t (:bold t :foreground "Cyan"))))
-     (font-lock-string-face ((t (:foreground "Khaki"))))
-     (font-lock-type-face ((t (:bold t :foreground "Cyan"))))
-     (font-lock-variable-name-face ((t (:foreground "LightGoldenrod"))))
-     (font-lock-warning-face ((t (:bold t :foreground "Pink"))))
-     (gnus-cite-attribution-face ((t (:bold t :foreground "Wheat"))))
-     (gnus-cite-face-1 ((t (:foreground "wheat"))))
-     (gnus-cite-face-10 ((t (:foreground "wheat"))))
-     (gnus-cite-face-11 ((t (:foreground "turquoise"))))
-     (gnus-cite-face-2 ((t (:foreground "cyan"))))
-     (gnus-cite-face-3 ((t (:foreground "light yellow"))))
-     (gnus-cite-face-4 ((t (:foreground "light pink"))))
-     (gnus-cite-face-5 ((t (:foreground "pale green"))))
-     (gnus-cite-face-6 ((t (:foreground "beige"))))
-     (gnus-cite-face-7 ((t (:foreground "orange"))))
-     (gnus-cite-face-8 ((t (:foreground "magenta"))))
-     (gnus-cite-face-9 ((t (:foreground "violet"))))
-     (gnus-emphasis-bold ((t (:bold t :foreground "wheat"))))
-     (gnus-emphasis-bold-italic ((t (:italic t :bold t))))
-     (gnus-emphasis-highlight-words ((t (:background "black" :foreground "yellow"))))
-     (gnus-emphasis-italic ((t (:italic t :foreground "white"))))
-     (gnus-emphasis-underline ((t (:underline t :foreground "white"))))
-     (gnus-emphasis-underline-bold ((t (:underline t :bold t :foreground "wheat"))))
-     (gnus-emphasis-underline-bold-italic ((t (:underline t :italic t :bold t))))
-     (gnus-emphasis-underline-italic ((t (:underline t :italic t :foreground "white"))))
-     (gnus-group-mail-1-empty-face ((t (:foreground "aquamarine1"))))
-     (gnus-group-mail-1-face ((t (:bold t :foreground "aquamarine1"))))
-     (gnus-group-mail-2-empty-face ((t (:foreground "aquamarine2"))))
-     (gnus-group-mail-2-face ((t (:bold t :foreground "aquamarine2"))))
-     (gnus-group-mail-3-empty-face ((t (:foreground "Salmon"))))
-     (gnus-group-mail-3-face ((t (:bold t :foreground "gold"))))
-     (gnus-group-mail-low-empty-face ((t (:foreground "Wheat"))))
-     (gnus-group-mail-low-face ((t (:bold t :foreground "aquamarine4"))))
-     (gnus-group-news-1-empty-face ((t (:foreground "PaleTurquoise"))))
-     (gnus-group-news-1-face ((t (:bold t :foreground "PaleTurquoise"))))
-     (gnus-group-news-2-empty-face ((t (:foreground "turquoise"))))
-     (gnus-group-news-2-face ((t (:bold t :foreground "turquoise"))))
-     (gnus-group-news-3-empty-face ((t (nil))))
-     (gnus-group-news-3-face ((t (:bold t :foreground "Wheat"))))
-     (gnus-group-news-4-empty-face ((t (nil))))
-     (gnus-group-news-4-face ((t (:bold t))))
-     (gnus-group-news-5-empty-face ((t (nil))))
-     (gnus-group-news-5-face ((t (:bold t))))
-     (gnus-group-news-6-empty-face ((t (nil))))
-     (gnus-group-news-6-face ((t (:bold t))))
-     (gnus-group-news-low-empty-face ((t (:foreground "DarkTurquoise"))))
-     (gnus-group-news-low-face ((t (:bold t :foreground "DarkTurquoise"))))
-     (gnus-header-content-face ((t (:italic t :foreground "Wheat"))))
-     (gnus-header-from-face ((t (:foreground "light yellow"))))
-     (gnus-header-name-face ((t (:foreground "cyan"))))
-     (gnus-header-newsgroups-face ((t (:italic t :foreground "yellow"))))
-     (gnus-header-subject-face ((t (:bold t :foreground "Gold"))))
-     (gnus-signature-face ((t (:italic t :foreground "wheat"))))
-     (gnus-splash-face ((t (:foreground "orange"))))
-     (gnus-summary-cancelled-face ((t (:background "black" :foreground "yellow"))))
-     (gnus-summary-high-ancient-face ((t (:bold t :foreground "SkyBlue"))))
-     (gnus-summary-high-read-face ((t (:bold t :foreground "PaleGreen"))))
-     (gnus-summary-high-ticked-face ((t (:bold t :foreground "pink"))))
-     (gnus-summary-high-unread-face ((t (:bold t :foreground "gold"))))
-     (gnus-summary-low-ancient-face ((t (:italic t :foreground "SkyBlue"))))
-     (gnus-summary-low-read-face ((t (:italic t :foreground "PaleGreen"))))
-     (gnus-summary-low-ticked-face ((t (:italic t :foreground "pink"))))
-     (gnus-summary-low-unread-face ((t (:italic t))))
-     (gnus-summary-normal-ancient-face ((t (:foreground "SkyBlue"))))
-     (gnus-summary-normal-read-face ((t (:foreground "PaleGreen"))))
-     (gnus-summary-normal-ticked-face ((t (:foreground "pink"))))
-     (gnus-summary-normal-unread-face ((t (:foreground "wheat"))))
-     (gnus-summary-selected-face ((t (:underline t :foreground "white"))))
-     (highlight ((t (:background "Blue" :foreground "white"))))
-     (highline-face ((t (:background "black" :foreground "white"))))
-     (holiday-face ((t (:background "pink" :foreground "white"))))
-     (info-menu-5 ((t (:underline t))))
-     (info-node ((t (:italic t :bold t :foreground "white"))))
-     (info-xref ((t (:bold t :foreground "wheat"))))
-     (italic ((t (:italic t :foreground "white"))))
-     (makefile-space-face ((t (:background "hotpink"))))
-     (message-cited-text-face ((t (:foreground "green"))))
-     (message-header-cc-face ((t (:bold t :foreground "Aquamarine"))))
-     (message-header-name-face ((t (:foreground "Gold"))))
-     (message-header-newsgroups-face ((t (:italic t :bold t :foreground "yellow"))))
-     (message-header-other-face ((t (:foreground "lightGray"))))
-     (message-header-subject-face ((t (:foreground "Yellow"))))
-     (message-header-to-face ((t (:bold t :foreground "green2"))))
-     (message-header-xheader-face ((t (:foreground "blue"))))
-     (message-mml-face ((t (:bold t :foreground "khaki"))))
-     (message-separator-face ((t (:background "aquamarine" :foreground "black"))))
-     (modeline ((t (:background "DarkGray" :foreground "Black"))))
-     (modeline-buffer-id ((t (:background "DarkGray" :foreground "Black"))))
-     (modeline-mousable ((t (:background "DarkGray" :foreground "Black"))))
-     (modeline-mousable-minor-mode ((t (:background "DarkGray" :foreground "Black"))))
-     (paren-mismatch-face ((t (:background "DeepPink" :foreground "white"))))
-     (paren-no-match-face ((t (:background "yellow" :foreground "white"))))
-     (region ((t (:background "MediumSlateBlue" :foreground "white"))))
-     (secondary-selection ((t (:background "Sienna" :foreground "white"))))
-     (show-paren-match-face ((t (:background "turquoise" :foreground "white"))))
-     (show-paren-mismatch-face ((t (:background "purple" :foreground "white"))))
-     (speedbar-button-face ((t (:bold t :foreground "magenta"))))
-     (speedbar-directory-face ((t (:bold t :foreground "orchid"))))
-     (speedbar-file-face ((t (:foreground "pink"))))
-     (speedbar-highlight-face ((t (:background "black"))))
-     (speedbar-selected-face ((t (:underline t :foreground "cyan"))))
-     (speedbar-tag-face ((t (:foreground "yellow"))))
-     (swbuff-current-buffer-face ((t (:bold t :foreground "red"))))
-     (underline ((t (:underline t :foreground "white"))))
-     (widget-button-face ((t (:bold t :foreground "wheat"))))
-     (widget-button-pressed-face ((t (:foreground "red"))))
-     (widget-documentation-face ((t (:foreground "lime green"))))
-     (widget-field-face ((t (:background "dim gray" :foreground "white"))))
-     (widget-inactive-face ((t (:foreground "light gray"))))
-     (widget-single-line-field-face ((t (:background "dim gray" :foreground "white")))))))
+(set-frame-face-attributes
+    'mode-line '(:background \"skyblue\") '(:background \"blue\"))
 
-(color-theme-ahyatt-green)
+allows you to set the mode-line background to skyblue for GUI frames
+and blue for TTY frames."
+  (let ((new-value (list gui-spec tty-spec))
+        (cell (assq face my-frame-faces)))
+    (if cell
+        (setcdr cell new-value)
+      (add-to-list 'my-frame-faces (cons face new-value) t))))
+
+(defun set-frame-faces (&optional frame)
+  "Set faces that depend on the type of frame. These frames are listed in
+my-frame-faces, and are set by calling set-frame-face-attributes. The optional
+frame argument is the frame for which colors are set, or nil for global faces.
+This function is normally not called directly; it is added to frame creation
+hooks."
+  (let ((window-system (if (fboundp 'window-system)
+                           (window-system frame)
+                           window-system)))
+    (loop for spec in my-frame-faces do
+          (apply 'set-face-attribute
+                 (list* (car spec) frame
+                        (if window-system (nth 1 spec) (nth 2 spec)))))))
+
+(set-frame-face-attributes
+ 'default
+ '(:background "#f6f6f2")
+ '(:background unspecified))
+
+(try-require 'font-lock
+  (set-frame-face-attributes
+   'font-lock-string-face
+   '(:background "#e8e8e8" :foreground "#000000")
+   '(:background unspecified :foreground "green"))
+  (set-frame-face-attributes
+   'font-lock-doc-face
+   '(:background "#e8e8e8" :foreground "#448844")
+   '(:background unspecified :foreground "green"))
+  (set-face-foreground 'font-lock-comment-face "#006699")
+  (make-face-bold 'font-lock-comment-face)
+  (set-face-foreground 'font-lock-comment-delimiter-face "#4499cc")
+  (set-face-foreground 'font-lock-constant-face "#553399")
+  (set-face-foreground 'font-lock-type-face "blue4")
+  (set-face-foreground 'font-lock-variable-name-face "blue4")
+  (set-face-foreground 'font-lock-function-name-face "#2244d0")
+  (set-face-foreground 'font-lock-preprocessor-face "purple")
+  (set-face-foreground 'font-lock-warning-face "red")
+  (set-face-foreground 'font-lock-keyword-face "gray30")
+  (set-face-foreground 'font-lock-builtin-face "green4")
+  (set-face-foreground 'font-lock-negation-char-face "red")
+  (make-face-unbold 'font-lock-warning-face))
+
+(make-face 'lazy-highlight)
+(set-face-background 'isearch "yellow")
+(set-face-foreground 'isearch nil)
+(set-face-background 'lazy-highlight "#ffffcc")
+(set-face-foreground 'lazy-highlight nil)
+
+(make-face 'trailing-whitespace)
+(set-frame-face-attributes
+ 'trailing-whitespace
+ '(:background "#ccccdd")
+ '(:background "cyan"))
+
+(set-face-foreground 'fringe "cyan4")
+(set-face-foreground 'completions-common-part "gray30")
+(set-face-underline-p 'completions-first-difference t)
+
+;; The mode-line has an inactive and active state, which almost
+;; matches what I did with XEmacs, except when the application doesn't
+;; have focus, one of the mode-lines still is considered active.
+(set-frame-face-attributes
+ 'mode-line
+ '(:foreground "white" :background "#4e5caf" :inverse-video nil)
+ '(:foreground "white" :background "blue" :inverse-video nil))
+(set-frame-face-attributes
+ 'mode-line-inactive
+ '(:foreground "black" :background "#bfc1c5" :inverse-video nil)
+ '(:foreground "white" :background "black" :inverse-video nil))
+(set-frame-face-attributes
+ 'mode-line-emphasis
+ '(:foreground "red" :background "#ffffcc" :inverse-video nil)
+ '(:foreground "red" :background "yellow" :inverse-video nil))
+(set-face-attribute
+ 'mode-line nil
+ :box '(:line-width 1 :color "#bbabb4" :style released-button))
+(set-face-attribute
+ 'mode-line-inactive nil
+ :box '(:line-width 1 :color "gray70" :style released-button))
+(set-face-attribute
+ 'mode-line-highlight nil
+ :box '(:line-width 2 :color "purple" :style pressed-button))
+
+;; There's a minibuffer-prompt face, so I no longer need minibuffer-setup-hook
+(set-face-background 'minibuffer-prompt "yellow")
+(set-face-foreground 'minibuffer-prompt "black")
+
+(make-face 'query-replace)
+(set-face-background 'query-replace "green4")
+(set-face-foreground 'query-replace "white")
+
+(set-face-background 'region "#99ddff")
+(set-face-foreground 'region "black")
+
+(set-face-background 'highlight "blue")
+(set-face-foreground 'highlight "white")
+
+(set-face-background 'match "#99ddaa")
+(set-face-foreground 'match nil)
+
+(make-face 'show-paren-match)
+(make-face 'show-paren-mismatch)
+(set-frame-face-attributes
+ 'show-paren-match
+ '(:background "#99ff99" :foreground "black")
+ '(:background "cyan" :foreground "black"))
+(set-frame-face-attributes
+ 'show-paren-mismatch
+ '(:background "#ff9999" :foreground "black")
+ '(:background "red" :foreground "white"))
+
+;; Anonymous Pro from http://www.ms-studio.com/FontSales/anonymouspro.html
+(set-face-attribute 'default nil :family ash-default-font :height my-font-size :background "white" :foreground "black")
+(set-face-attribute 'fixed-pitch nil :family ash-fixed-pitch-font :height my-font-size)
+(set-face-attribute 'variable-pitch nil :family ash-lucida-sans-font :height my-font-size)
+(set-face-attribute 'modeline nil :family ash-lucida-sans-font :height (- my-font-size 30))
+(set-face-attribute 'font-lock-function-name-face nil
+                    :family ash-lucida-sans-italic-font :height (+ 20 my-font-size) :italic t)
+
+(set-face-attribute 'font-lock-comment-face nil :family ash-lucida-sans-font :height my-font-size)
+(set-face-foreground 'font-lock-comment-face "black")
+(set-face-background 'font-lock-comment-face "#ddddcc")
+(make-face-unitalic 'font-lock-comment-face)
+(make-face-bold 'font-lock-comment-face)
 
 (provide 'ash-faces)

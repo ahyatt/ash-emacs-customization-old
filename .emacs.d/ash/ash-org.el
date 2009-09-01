@@ -24,6 +24,9 @@
 (setq org-link-frame-setup '((gnus . gnus)
 			     (file . find-file-other-window)))
 
+(set-face-attribute 'org-mode-line-clock nil
+                    :family "Lucida Sans Italic" :italic t)
+
 (require 'remember)
 (require 'org-remember)
 (org-remember-insinuate)
@@ -51,5 +54,29 @@
 
 (setq org-completion-use-ido t)
 (setq org-use-fast-todo-selection t)
+
+(defun ash-jabber-colorize-tags ()
+  (let ((contact-hash (make-hash-table :test 'equal)))
+    (dolist (jc jabber-connections)
+      (dolist (contact (plist-get (fsm-get-state-data jc) :roster))
+        (puthash (car (split-string (symbol-name contact) "@")) contact contact-hash)))
+    (save-excursion
+      (goto-char (point-min))
+      (while (re-search-forward ":\\(\\w+\\):" nil t)
+        (let ((tag (match-string-no-properties 1)))
+          (when (and tag (gethash tag contact-hash))
+            (let* ((js (jabber-jid-symbol (gethash tag contact-hash)))
+                   (connected (get js 'connected))
+                   (show (get js 'show)))
+              (if connected
+                  (let ((o (make-overlay (match-beginning 1) (- (point) 1))))
+                    (overlay-put o 'face
+                                 (cons 'foreground-color
+                                       (cond ((equal "away" show)
+                                              "orange")
+                                             ((equal "dnd" show)
+                                              "red")
+                                             (t "green")))))))))
+        (backward-char)))))
 
 (provide 'ash-org)

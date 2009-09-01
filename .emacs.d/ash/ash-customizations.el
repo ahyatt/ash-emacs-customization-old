@@ -152,4 +152,17 @@ styles that aren't already using two or four spaces."
       (let ((transient-mark-mode nil))
         (indent-region (region-beginning) (region-end) nil))))
 
+;; Easy sudo editing, never switch to vi again!
+(defun sudo-edit (&optional arg)
+  (interactive "p")
+  (if arg
+      (find-file (concat "/sudo:root@localhost:" (ido-read-file-name "File: ")))
+    (find-alternate-file (concat "/sudo:root@localhost:" buffer-file-name))))
+
+(defun sudo-edit-current-file ()
+  (interactive)
+  (find-alternate-file (concat "/sudo:root@localhost:" (buffer-file-name (current-buffer)))))
+(key-chord-define-global "fg" 'sudo-edit-current-file)
+
+
 (provide 'ash-customizations)
