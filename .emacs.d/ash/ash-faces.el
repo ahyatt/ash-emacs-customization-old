@@ -1,6 +1,6 @@
 ;; Font setup, mostly copied from Amit Patel
 ; TODO: running in daemon mode confuses my-font-size
-(defvar my-font-size (if (equal ":0.0" (getenv "DISPLAY")) 110 130))
+(defvar my-font-size (if (equal ":0.0" (getenv "DISPLAY")) 140 120))
 ;; Anonymous Pro from http://www.ms-studio.com/FontSales/anonymouspro.html
 (set-face-attribute 'default nil :family "Anonymous Pro" :height my-font-size :background "white" :foreground "black")
 (set-face-attribute 'fixed-pitch nil :family "Inconsolata" :height my-font-size)
