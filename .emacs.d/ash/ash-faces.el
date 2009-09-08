@@ -1,9 +1,7 @@
 ;; Font setup, mostly copied from Amit Patel
 ; TODO: running in daemon mode confuses my-font-size
 (defvar my-font-size (if (equal ":0.0" (getenv "DISPLAY")) 140 120))
-;; Anonymous Pro from http://www.ms-studio.com/FontSales/anonymouspro.html
-
-(defvar ash-default-font "Anonymous Pro")
+(defvar ash-default-font "Inconsolata")
 (defvar ash-fixed-pitch-font "Inconsolata")
 (defvar ash-lucida-sans-font "Lucida Sans")
 (defvar ash-lucida-sans-italic-font "Lucida Sans Italic")
