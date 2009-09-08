@@ -33,6 +33,8 @@ styles that aren't already using two or four spaces."
 (define-key global-map "\M-g" 'goto-line)
 
 (define-key global-map "\M-/" 'hippie-expand)
+;; just try-expand-line, which I dislike
+(setq hippie-expand-try-functions-list '(try-complete-file-name-partially try-complete-file-name try-expand-all-abbrevs try-expand-list try-expand-dabbrev try-expand-dabbrev-all-buffers try-expand-dabbrev-from-kill try-complete-lisp-symbol-partially try-complete-lisp-symbol))
 
 ;; case-insensitive search
 (setq case-fold-search t)
