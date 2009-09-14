@@ -29,7 +29,7 @@
 
 ;; From http://www.emacswiki.org/emacs/init-gnus.el
 
-(setq gnus-summary-line-format "%4P %U%R%z%O %{%16&user-date;%}   %{%-20,20n%} %{%ua%} %B %(%I%-60,60s%)\n")
+(setq gnus-summary-line-format "%U%R%z%O %{%16&user-date;%}   %{%-20,20n%} %{%ua%} %B %(%I%-60,60s%)\n")
 (defun gnus-user-format-function-a (header) 
   (let ((myself (concat "<" user-mail-address ">"))
         (references (mail-header-references header))
