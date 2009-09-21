@@ -1,3 +1,6 @@
+;; Save minibuffer history
+(savehist-mode 1)
+
 ;; Unique buffers
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
