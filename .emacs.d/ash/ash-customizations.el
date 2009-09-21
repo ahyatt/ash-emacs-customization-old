@@ -191,5 +191,14 @@ styles that aren't already using two or four spaces."
   (find-alternate-file (concat "/sudo:root@localhost:" (buffer-file-name (current-buffer)))))
 (key-chord-define-global "fg" 'sudo-edit-current-file)
 
+;; Change the jabber mode line to not display counts
+
+;; I don't like the jabber modeline having counts, it takes up too
+;; much room.
+(defadvice jabber-mode-line-count-contacts (around ash-remove-jabber-counts
+                                                   (&rest ignore))
+  "Override for count contacts, to remove contacts from modeline"
+  (setq ad-return-value ""))
+(ad-activate 'jabber-mode-line-count-contacts)
 
 (provide 'ash-customizations)
