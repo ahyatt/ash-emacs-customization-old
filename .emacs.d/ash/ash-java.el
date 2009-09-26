@@ -157,45 +157,4 @@ register 105 (i).  Use this in conjunction with
 (global-set-key [f8] 'ash-java-grab-import)
 (global-set-key [f9] 'ash-java-add-grabbed-import)
 
-;; Code from http://badbyteblues.blogspot.com/2007/12/hippie-expand-and-autocompletion-in.html
-;; This is a simple function to return the point at the beginning of the symbol to be completed
-(defun he-tag-beg ()
-  (let ((p
-         (save-excursion
-           (backward-word 1)
-           (point))))
-    p))
-
-;; The actual expansion function
-(defun try-expand-tag (old)
-  ;; old is true if we have already attempted an expansion
-  (unless  old
-    ;; he-init-string is used to capture the string we are trying to complete
-    (he-init-string (he-tag-beg) (point))
-    ;; he-expand list is the list of possible expansions
-    (setq he-expand-list (sort
-                          (all-completions he-search-string 'complete-tag) 'string-lessp)))
-  ;; now we go through the list, looking for an expansion that isn't in the table of previously
-  ;; tried expansions
-  (while (and he-expand-list
-              (he-string-member (car he-expand-list) he-tried-table))
-    (setq he-expand-list (cdr he-expand-list)))
-  ;; if we didn't have any expansions left, reset the expansion list
-  (if (null he-expand-list)
-      (progn
-        (when old (he-reset-string))
-        ())
-    ;; otherwise offer the expansion at the head of the list
-    (he-substitute-string (car he-expand-list))
-    ;; and put that expansion into the tried expansions list
-    (setq he-expand-list (cdr he-expand-list))
-    t))
-
-;; Not yet using this
-;; (setq hippie-expand-try-functions-list
-;;       (append hippie-expand-try-functions-list '(try-expand-tag)))
-(require 'doc-mode)
-(add-hook 'java-mode-hook 'doc-mode t)
-(require 'hideshow-org)
-
 (provide 'ash-java)

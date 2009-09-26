@@ -1,4 +1,4 @@
-;; Font setup, mostly copied from Amit Patel
+;; Font setup, mostly copied from amitp
 ; TODO: running in daemon mode confuses my-font-size
 (defvar my-font-size (if (equal ":0.0" (getenv "DISPLAY")) 190 140))
 (defvar ash-default-font "Inconsolata")

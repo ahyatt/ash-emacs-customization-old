@@ -4,30 +4,32 @@
 ;; Description: Look up synonyms for a word or phrase in a thesaurus.
 ;; Author: Drew Adams
 ;; Maintainer: Drew Adams
-;; Copyright (C) 2005-2008, Drew Adams, all rights reserved.
+;; Copyright (C) 2005-2009, Drew Adams, all rights reserved.
 ;; Created: Tue Dec 20 14:39:26 2005
 ;; Version: 1.0
-;; Last-Updated: Tue Jan 01 14:05:14 2008 (-28800 Pacific Standard Time)
+;; Last-Updated: Fri May 22 07:18:03 2009 (-0700)
 ;;           By: dradams
-;;     Update #: 2371
+;;     Update #: 2374
 ;; URL: http://www.emacswiki.org/cgi-bin/wiki/synonyms.el
 ;; Keywords: text, dictionary, thesaurus, spelling, apropos, help
-;; Compatibility: GNU Emacs 20, GNU Emacs 22
+;; Compatibility: GNU Emacs 20.x, GNU Emacs 22.x
 ;;
 ;; Features that might be required by this library:
 ;;
-;;   `apropos', `apropos-fn+var', `avoid', `cl', `color-theme',
-;;   `cus-edit', `cus-face', `cus-load', `cus-start', `custom',
-;;   `dired', `dired+', `dired-aux', `dired-x', `doremi', `easymenu',
-;;   `ediff-diff', `ediff-help', `ediff-init', `ediff-merg',
-;;   `ediff-mult', `ediff-util', `ediff-wind', `ffap', `ffap-',
-;;   `fit-frame', `frame-cmds', `frame-fns', `help-mode', `hexrgb',
-;;   `icicles', `icicles-cmd', `icicles-face', `icicles-fn',
-;;   `icicles-mac', `icicles-mcmd', `icicles-mode', `icicles-opt',
-;;   `icicles-var', `info', `info+', `kmacro', `misc-fns', `mkhtml',
-;;   `mkhtml-htmlize', `mwheel', `pp', `pp+', `ring', `ring+',
-;;   `strings', `subr-21', `thingatpt', `thingatpt+', `wid-edit',
-;;   `wid-edit+', `widget'.
+;;   `apropos', `apropos+', `apropos-fn+var', `avoid', `cl',
+;;   `color-theme', `cus-edit', `cus-face', `cus-load', `cus-start',
+;;   `custom', `dired', `dired+', `dired-aux', `dired-x', `doremi',
+;;   `easymenu', `ediff-diff', `ediff-help', `ediff-init',
+;;   `ediff-merg', `ediff-mult', `ediff-util', `ediff-wind', `ffap',
+;;   `ffap-', `fit-frame', `frame-cmds', `frame-fns', `help+20',
+;;   `hexrgb', `icicles', `icicles-cmd1', `icicles-cmd2',
+;;   `icicles-face', `icicles-fn', `icicles-mac', `icicles-mcmd',
+;;   `icicles-mode', `icicles-opt', `icicles-var', `info', `info+',
+;;   `kmacro', `levenshtein', `menu-bar', `menu-bar+', `misc-cmds',
+;;   `misc-fns', `mkhtml', `mkhtml-htmlize', `mwheel', `pp', `pp+',
+;;   `ring', `ring+', `second-sel', `strings', `thingatpt',
+;;   `thingatpt+', `unaccent', `w32-browser', `w32browser-dlgopen',
+;;   `wid-edit', `wid-edit+', `widget'.
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
