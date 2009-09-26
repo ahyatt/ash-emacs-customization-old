@@ -61,4 +61,9 @@ new assoc list."
        (save-buffer)
        (kill-buffer (current-buffer))))))
 
+(defun ash-add-subdirs-to-load-path (dir)
+  (let* ((default-directory dir))
+    (setq load-path (cons dir load-path))
+    (normal-top-level-add-subdirs-to-load-path)))
+
 (provide 'ash-helper-functions)
