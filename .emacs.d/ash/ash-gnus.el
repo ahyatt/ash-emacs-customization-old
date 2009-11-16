@@ -19,6 +19,8 @@
 (setq gnus-agent-queue-mail nil)
 (setq gnus-keep-same-level 't)
 
+(setq gnus-summary-ignore-duplicates t)
+
 (setq gnus-group-use-permanent-levels 't)
 (setq gnus-summary-line-format "%-10&user-date;%U%R%z%I%(%[%-23,23f%]%) %s\n")
 
