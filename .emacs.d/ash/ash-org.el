@@ -13,9 +13,19 @@
 (setq org-agenda-custom-commands
       '(("w" todo "WAITING" nil)
 	("b" tags-todo "+bg")))
+	("n" tags-todo "+someday"
+         ((org-show-hierarchy-above nil) (org-agenda-todo-ignore-with-date t)
+          (org-agenda-tags-todo-honor-ignore-options t)))
+        ("l" "Agenda and live tasks" ((agenda "")
+                                      (tags-todo "-someday")))
+        ("f" "Focus" ((agenda "") (tags-todo "+focus")))))
+
 (setq org-agenda-include-diary t)
 (setq org-enforce-todo-dependencies t)
 (setq org-agenda-dim-blocked-tasks 'invisible)
+(setq org-refile-use-outline-path nil)
+(setq org-refile-targets '((nil . (:maxlevel . 3))))
+(setq org-use-speed-commands t)
 
 (define-key global-map [f9] 'org-clock-goto)
 
