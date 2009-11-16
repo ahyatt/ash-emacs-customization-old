@@ -42,7 +42,22 @@
 (require 'js2-mode)
 (require 'twittering-mode)
 (require 'dvc-autoloads)
+<<<<<<< HEAD
+=======
+(require 'autopair)
 
+;; color-theme
+(require 'zenburn)
+(zenburn)
+(set-face-foreground 'font-lock-negation-char-face "orange")
+
+(autopair-global-mode)
+
+(ash-add-subdirs-to-load-path "/usr/share/emacs/22.1/site-lisp")
+
+(autoload 'wl "wl" "Wanderlust" t)
+(autoload 'wl-other-frame "wl" "Wanderlust on new frame." t)
+(autoload 'wl-draft "wl-draft" "Write draft with Wanderlust." t)
 (push '(font-backend xft x) default-frame-alist)
 
 (setq Info-default-directory-list 
