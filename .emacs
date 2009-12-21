@@ -14,19 +14,7 @@
                           "~/.emacs.d/dvc"
 			  "~/.emacs.d/git") load-path))
 
-(require 'epa-file)
-(epa-file-enable)
-
 (require 'android-mode)
-(setq android-mode-sdk-dir "~/android-sdk-mac_x86-1.5_r1")
-
-;; workaround for emacs 23 bug
-(or (functionp 'if)
-    (defadvice functionp (around workaround-bug (object) activate)
-      "Workaround bug."
-      (or ad-do-it
-            (setq ad-return-value (and (symbolp object) (fboundp object))))))
-
 (require 'ash-customizations)
 (require 'ash-refill-mode)
 (require 'ash-org)
@@ -37,14 +25,9 @@
 (require 'ash-faces)
 (require 'magit)
 (require 'anything)
-(require 'egg)
 (require 'jabber)
 (require 'js2-mode)
-(require 'twittering-mode)
 (require 'dvc-autoloads)
-<<<<<<< HEAD
-=======
-(require 'autopair)
 
 ;; color-theme
 (require 'zenburn)
@@ -53,11 +36,6 @@
 
 (autopair-global-mode)
 
-(ash-add-subdirs-to-load-path "/usr/share/emacs/22.1/site-lisp")
-
-(autoload 'wl "wl" "Wanderlust" t)
-(autoload 'wl-other-frame "wl" "Wanderlust on new frame." t)
-(autoload 'wl-draft "wl-draft" "Write draft with Wanderlust." t)
 (push '(font-backend xft x) default-frame-alist)
 
 (setq Info-default-directory-list 
@@ -77,13 +55,6 @@
 (require 'midnight)
 (setq midnight-mode t)
 (jabber-autoaway-start)
-
-(add-hook 'eshell-mode-hook
-          '(lambda ()
-             (setenv
-              "PATH"
-              (concat "/Users/andy/android-sdk-mac_x86-1.5_r1/tools:"
-                      (getenv "PATH")))))
 
 (setq-default show-trailing-whitespace t)
 
