@@ -86,6 +86,7 @@
  '(midnight-mode nil nil (midnight))
  '(org-clock-string-limit 50)
  '(org-todo-keywords (quote ((sequence "TODO(t)" "STARTED(s)" "WAITING(w@/!)" "|" "DONE(d)" "OBSOLETE(o)"))))
+ '(recentf-exclude (quote ("#\\\\d+$" "/home/\\\\(^ahyatt\\\\)" "/\\\\." "/tmp")))
  '(show-paren-mode t)
  '(twit-pass "")
  '(twit-user "andrewhyatt")
