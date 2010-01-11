@@ -215,10 +215,54 @@ and `ash-project-root' variables."
 			     file-assoc-list))))))
 
 (key-chord-define-global "xb" 'recentf-ido-find-file)
-(key-chord-define-global "xg" 'execute-extended-command)
+(key-chord-define-global "xg" 'smex)
+(key-chord-define-global "XG" 'smex-major-mode-commands)
 
+;; Disadvantage: no undo in region.
 (require 'undo-tree)
 
 (global-undo-tree-mode)
+
+(require 'smex)
+(add-hook 'after-init-hook 'smex-initialize)
+(global-set-key (kbd "M-x") 'smex)
+(global-set-key (kbd "M-X") 'smex-major-mode-commands)
+(global-set-key (kbd "C-c M-x") 'smex-update-and-run)
+;; This is your old M-x.
+(global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
+
+;; ediff customization
+(add-hook 'ediff-keymap-setup-hook (lambda () (define-key 'ediff-mode-map
+                                                "t" 'ediff-cycle-combination-pattern)))
+(setq ediff-combination-patterns-available '())
+(add-to-list 'ediff-combination-patterns-available
+             ;; a, then b, then ancestor with markers
+             '("<<<<<<< variant A" A ">>>>>variant B" B  "####### Ancestor" Ancestor
+               "======= end") t)
+(add-to-list 'ediff-combination-patterns-available
+             ;; b, then a, then ancestor with markers
+             '("<<<<<<< variant B" B ">>>>>variant A" A  "####### Ancestor" Ancestor
+               "======= end") t)
+(add-to-list 'ediff-combination-patterns-available
+             ;; a, b, ancestor w/o markers
+             '("" A "" B "" Ancestor "") t)
+(add-to-list 'ediff-combination-patterns-available
+             ;; b, a, ancestor w/o markers
+             '("" B "" A "" Ancestor "") t)
+
+;; add more possibliities to ediff-combination-patterns-available
+;;; some elisp here to cycle thru patterns (probably ugly).
+(defun ediff-cycle-combination-pattern ()
+  "Change ediff-combination-pattern"
+  (interactive)
+  (setq ediff-combination-pattern
+        (pop ediff-combination-patterns-available))
+  (add-to-list 'ediff-combination-patterns-available
+               ediff-combination-pattern t)
+  (ediff-combine-diffs nil))
+
+;; Jabber customization
+(add-hook 'jabber-chat-mode-hook 'flyspell-mode)
+
 
 (provide 'ash-customizations)
