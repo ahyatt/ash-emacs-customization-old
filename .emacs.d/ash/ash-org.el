@@ -46,8 +46,12 @@
 (add-hook 'remember-mode-hook 'org-remember-apply-template)
 
 (setq org-remember-templates
-      '(("Todo" ?t "* TODO %?\nSCHEDULED: %t\n%a" "~/org/inbox.org")
-	("Act on email" ?a "* TODO Reply to '%:subject' (%:group)  %a\nSCHEDULED: %t\n%!" "~/org/inbox.org")))
+      '(("Note" ?n "* %a%?\n%u\n%i" "~/org/work.org" "Unfiled notes")
+        ("Journal" ?j "* %T %?" "~/org/notes.org" date-tree)
+        ("Child todo" ?c "* TODO %?\n%a" "~/org/work.org" "Inbox")
+        ("Todo" ?t "* TODO %?\n%a" "~/org/work.org" "Inbox")
+	("Act on email" ?a "* TODO Process [%a]\n%!" "~/org/work.org" "Inbox"
+         (mime-view-mode wl-summary-mode gnus-summary-mode gnus-article-mode))))
 
 (define-key global-map "\C-cr" 'org-remember)
 
