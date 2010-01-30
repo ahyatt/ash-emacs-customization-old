@@ -61,6 +61,9 @@ styles that aren't already using two or four spaces."
 
 (setq bookmark-save-flag 1)
 
+;; I like ibuffer
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+
 (setq ibuffer-saved-filter-groups
       (quote (("default"
 	       ("dired" (mode . dired-mode))
@@ -157,7 +160,8 @@ styles that aren't already using two or four spaces."
       (let ((transient-mark-mode nil))
         (indent-region (region-beginning) (region-end) nil))))
 
-;; Easy sudo editing, never switch to vi again!
+;; Easy sudo editing, never switch to vi again!  it doesn't seem to
+;; work, because it doesn't ask for a password, though.
 (defun sudo-edit (&optional arg)
   (interactive "p")
   (if arg
@@ -179,4 +183,14 @@ styles that aren't already using two or four spaces."
   (setq ad-return-value ""))
 (ad-activate 'jabber-mode-line-count-contacts)
 
+(defun ash-ibuffer-project-files ()
+  "This is predicated on having a per-project `ash-project-name'
+and `ash-project-root' variables."
+  (interactive)
+  (if (and (boundp 'ash-project-name) (boundp 'ash-project-root))
+      (ibuffer nil (concat "*ibuffer for " ash-project-name "*")
+               ('filename . ash-project-root))
+    (error "not ash-project-name or ash-project-root variable set")))
+
+(global-set-key [(f12)] 'ash-ibuffer-project-files)
 (provide 'ash-customizations)
