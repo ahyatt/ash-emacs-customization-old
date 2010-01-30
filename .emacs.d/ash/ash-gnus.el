@@ -10,8 +10,12 @@
 (setq bbdb/news-auto-create-p 'bbdb-ignore-some-messages-hook)
 
 (setq mm-text-html-renderer 'w3m-standalone)
+(setq mm-attachment-override-types '("image/.*"))
+;; No HTML mail
+(setq mm-discouraged-alternatives '("text/html" "text/richtext"))
 (setq gnus-message-archive-group "Sent")
 
+(setq gnus-ignored-mime-types '("text/x-vcard"))
 (setq gnus-agent-queue-mail nil)
 (setq gnus-keep-same-level 't)
 
