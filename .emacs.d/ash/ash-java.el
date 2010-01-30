@@ -2,8 +2,6 @@
 
 (defun ash-c-mode-customizations ()
   (setq c-basic-offset 2)
-  (c-subword-mode)
-  (hs-org/minor-mode)
   (add-to-list 'c-cleanup-list 'comment-close-slash))
 
 (defun ash-java-mode-customizations ()
